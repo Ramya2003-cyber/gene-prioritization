@@ -2,7 +2,7 @@
 
 **Enter a biomedical topic and a number _k_. Get the top-_k_ human genes, ranked from PubMed literature with LLM evidence review and a citation for every claim.**
 
-🔗 **Live demo:** https://ramya2003-cyber.github.io/gene-prioritization/ &nbsp;·&nbsp; **API:** https://REPLACE-WITH-YOUR-BACKEND.onrender.com/docs
+🔗 **Live demo:** https://ramya2003-cyber.github.io/gene-prioritization/ &nbsp;·&nbsp; **API:** https://gene-prioritizer-api.onrender.com/docs
 
 ![Screenshot](docs/screenshot.png)
 
