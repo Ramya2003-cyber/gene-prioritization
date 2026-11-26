@@ -1,0 +1,12 @@
+{
+ "cases": 148,
+ "research_model_p10": 0.7507,
+ "gfidf_p10": 0.5905,
+ "difference": 0.1601,
+ "ci95": [
+  0.1338,
+  0.1878
+ ],
+ "note": "Held-out (out-of-fold). Several of the 16 signals (KEGG co-membership, enrichment, pathway counts) derive from the KEGG catalog used for labels.",
+ "model_calls": 0
+}

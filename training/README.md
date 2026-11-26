@@ -56,6 +56,17 @@ pathXcite ([Hamberger et al., *Briefings in Bioinformatics* 2026](https://doi.or
 - Re-scoring reproduced GF-IDF's saved P@10 exactly, and its R@1 and MRR totals; 10 cases differed only in a lower ORA rank.
 - In the separate research experiments, models trained on all 251 cases reached 214/251 significant rank-1 recoveries versus GF-IDF's 201. That result is in-sample, so it is not a held-out claim.
 
+## Research model: held-out gene precision
+
+The full 16-signal research ranker (from the okn-guard grouped development experiment) was also scored on its saved out-of-fold predictions: 148 pathways, each predicted by a model that never saw it.
+
+| 148 held-out pathways | P@10 |
+|---|---:|
+| pathXcite GF-IDF | 0.591 |
+| 16-signal research ranker | **0.751** (+0.160, 95% CI +0.134 to +0.188) |
+
+Several of the 16 signals (KEGG co-membership, enrichment and pathway counts) come from the KEGG catalog that also supplies the labels, and the live app does not use them. Script: [`scripts/heldout_research_model_precision.py`](../scripts/heldout_research_model_precision.py). Output: [`research_model_precision.json`](research_model_precision.json).
+
 ## Interpretation
 
 - **Adding network signals is a trade-off, not an improvement.** The learner gives STRING degree a large weight (+0.53). That picks slightly more pathway members, but pathway recovery drops sharply. Highly connected "hub" genes belong to many pathways and also strengthen competing ones. On live topics the same effect put TP53 first for *ferroptosis*. The network gain is also likely inflated, because STRING's curated channel imports KEGG pathways, the same source as the training labels.
