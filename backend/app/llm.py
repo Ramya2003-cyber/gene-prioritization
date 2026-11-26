@@ -49,6 +49,7 @@ class LLMConfig:
         self.base_url = os.getenv("LLM_BASE_URL", "https://generativelanguage.googleapis.com/v1beta/openai").rstrip("/")
         self.model = os.getenv("LLM_MODEL", "gemini-3.1-flash-lite")
         self.max_calls = int(os.getenv("LLM_MAX_CALLS_PER_SEARCH", "4"))
+        self.timeout = float(os.getenv("LLM_TIMEOUT", "90"))  # raise for slow local models
 
     @property
     def enabled(self) -> bool:
@@ -150,7 +151,7 @@ def _call(client: httpx.Client, config: LLMConfig, topic: str, batch: list[dict]
             "response_format": {"type": "json_object"},
             "messages": [{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": user}],
         },
-        timeout=90,
+        timeout=config.timeout,
     )
     body = response.json()
     content = body["choices"][0]["message"]["content"]

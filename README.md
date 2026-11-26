@@ -29,7 +29,7 @@ Text mining finds *which* genes a set of abstracts mentions. It cannot tell whet
 - **Failures degrade gracefully.** A failed or rate-limited batch affects only its own genes, which fall back to literature signals, and the page says so.
 - **No gene is invented.** If fewer than _k_ human genes are found, the shortfall is reported.
 - **Usage is bounded:** at most 4 LLM calls per search, a per-IP hourly limit, a 24 h result cache and a cap on concurrent searches.
-- **Provider-agnostic:** any OpenAI-compatible endpoint (Gemini, Mistral, Groq…) works by changing environment variables.
+- **Provider-agnostic:** any OpenAI-compatible endpoint works by changing environment variables, including a local model (see below).
 
 ## How it works
 
@@ -65,6 +65,31 @@ The weights are set by hand. I tested them against **learned weights from a pair
 - **Network signals:** the learner gave them a large weight, which selected slightly more pathway members but cut pathway recovery by 7.6 points (statistically significant).
 - **Without network signals:** the learned model tied the hand-set weights on pathway recovery but was worse on precision.
 - **Result:** the hand-set weights were kept. The LLM relevance term has no saved equivalent, so it is not covered by this test.
+
+## Run with your own local LLM
+The LLM step uses the standard OpenAI chat-completions API, so a self-hosted model can replace Gemini without code changes. Nothing is sent to an external LLM; only the public literature APIs (Europe PMC, PubTator3, MyGene, STRING) are called.
+
+1. **Serve your model** with an OpenAI-compatible server, for example:
+   ```bash
+   vllm serve <model-path-or-name> --port 8001          # vLLM  -> http://localhost:8001/v1
+   ollama serve && ollama pull <model>                  # Ollama -> http://localhost:11434/v1
+   ```
+2. **Point the backend at it.** Create `.env` in the repo root (copy `.env.example`):
+   ```bash
+   LLM_BASE_URL=http://localhost:8001/v1   # your server's /v1 address
+   LLM_MODEL=<model name as the server reports it>
+   LLM_API_KEY=local                       # any non-empty text; local servers ignore it
+   LLM_TIMEOUT=300                         # seconds per request; raise for slower hardware
+   ```
+3. **Start the app:**
+   ```bash
+   pip install -r backend/requirements.txt
+   cd backend && uvicorn app.main:app --port 8000      # API
+   cd frontend && python -m http.server 5500           # UI at http://127.0.0.1:5500
+   ```
+4. **Check it:** open http://127.0.0.1:8000/api/health. It should show `"llm_enabled": true` and your model name. Results pages show the model that reviewed the evidence.
+
+**What the model must do:** each request is about 3–4k tokens (12 genes, up to 3 sentences each), and the model must answer with one JSON object. The app requests JSON mode, which vLLM, Ollama and llama.cpp support. If a server ignores it, JSON is still extracted from plain text. Tool calling is not used. Invalid or failed answers never break a search; they are dropped and reported.
 
 ## Tech stack
 
