@@ -39,6 +39,23 @@ Paired bootstrap differences against the hand-set weights (95% CI, 5,000 resampl
 | Literature + LLM evidence | −0.024 [−0.034, −0.015] | +0.016 [−0.008, +0.044] | +0.005 [−0.013, +0.024] |
 | + network | +0.020 [+0.006, +0.034] | −0.076 [−0.116, −0.036] | −0.058 [−0.087, −0.030] |
 
+## Comparison with pathXcite GF-IDF
+
+pathXcite ([Hamberger et al., *Briefings in Bioinformatics* 2026](https://doi.org/10.1093/bib/bbag348)) ranks literature genes with GF-IDF and has no training step. Its saved top-10 lists for the same 251 cases were re-scored with the same ORA, and the results were compared case by case with the held-out results above. Script: [`scripts/compare_with_gfidf.py`](../scripts/compare_with_gfidf.py). Output: [`gfidf_comparison.json`](gfidf_comparison.json).
+
+| Method minus GF-IDF (95% paired bootstrap CI) | ΔP@10 | ΔR@1 | ΔMRR | R@1 wins / losses |
+|---|---|---|---|---|
+| GF-IDF itself | 0.574 | 0.801 | 0.851 | |
+| Hand-set weights (app) | **+0.057** [+0.040, +0.073] | −0.024 [−0.060, +0.012] | −0.015 [−0.039, +0.009] | 9 / 15 |
+| Learned: literature + LLM evidence | **+0.032** [+0.016, +0.048] | −0.008 [−0.044, +0.032] | −0.009 [−0.034, +0.016] | 10 / 12 |
+| Learned: + network | **+0.076** [+0.057, +0.096] | −0.100 [−0.151, −0.052] | −0.072 [−0.105, −0.040] | 8 / 33 |
+| Paper count only | +0.006 [−0.012, +0.024] | −0.076 [−0.128, −0.028] | −0.052 [−0.084, −0.020] | 11 / 30 |
+
+- **Gene precision:** every literature + evidence ranker selects significantly more true pathway members than GF-IDF.
+- **Pathway recovery** (pathXcite's own headline metric): the hand-set and learned literature + evidence rankers are statistically tied with GF-IDF. Neither is shown to be better or worse.
+- Re-scoring reproduced GF-IDF's saved P@10 exactly, and its R@1 and MRR totals; 10 cases differed only in a lower ORA rank.
+- In the separate research experiments, models trained on all 251 cases reached 214/251 significant rank-1 recoveries versus GF-IDF's 201. That result is in-sample, so it is not a held-out claim.
+
 ## Interpretation
 
 - **Adding network signals is a trade-off, not an improvement.** The learner gives STRING degree a large weight (+0.53). That picks slightly more pathway members, but pathway recovery drops sharply. Highly connected "hub" genes belong to many pathways and also strengthen competing ones. On live topics the same effect put TP53 first for *ferroptosis*. The network gain is also likely inflated, because STRING's curated channel imports KEGG pathways, the same source as the training labels.

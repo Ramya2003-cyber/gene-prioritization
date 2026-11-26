@@ -57,6 +57,7 @@ The weights are set by hand. I tested them against **learned weights from a pair
 
 | Ranking (held-out pathways) | Gene precision@10 | Pathway R@1 | MRR |
 |---|---:|---:|---:|
+| pathXcite GF-IDF (published method, no training) | 0.574 | **0.801** | **0.851** |
 | Paper count only | 0.580 | 0.725 | 0.799 |
 | **Hand-set weights (used)** | **0.631** | 0.777 | 0.836 |
 | Learned: literature + evidence | 0.606 | 0.793 | 0.841 |
@@ -64,6 +65,7 @@ The weights are set by hand. I tested them against **learned weights from a pair
 
 - **Network signals:** the learner gave them a large weight, which selected slightly more pathway members but cut pathway recovery by 7.6 points (statistically significant).
 - **Without network signals:** the learned model tied the hand-set weights on pathway recovery but was worse on precision.
+- **Against pathXcite** ([Hamberger et al., *Briefings in Bioinformatics* 2026](https://doi.org/10.1093/bib/bbag348)), paired on the same 251 pathways: the hand-set weights put significantly more true pathway genes in the top 10 (+5.7 points, 95% CI +4.0 to +7.3). Pathway recovery is statistically tied (R@1 −2.4 points, CI −6.0 to +1.2). See [`training/gfidf_comparison.json`](training/gfidf_comparison.json).
 - **Result:** the hand-set weights were kept. The LLM relevance term has no saved equivalent, so it is not covered by this test.
 
 ## Run with your own local LLM
