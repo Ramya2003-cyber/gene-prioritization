@@ -81,7 +81,7 @@ backend/    Python 3.11, FastAPI                      → Render
 training/   weight-validation study (learning-to-rank vs hand-set weights)
 ```
 
-**Run locally:** `pip install -r backend/requirements.txt`, set the environment variable `LLM_API_KEY` to a free Gemini key, then run `uvicorn app.main:app` from `backend/`, and `python -m http.server 5500` from `frontend/`. Tests: `python -m pytest -q` in `backend/`.
+**Run locally:** `pip install -r backend/requirements.txt`, put a free Gemini key in `.env` as `LLM_API_KEY` (see `.env.example`), then run `uvicorn app.main:app` from `backend/`, and `python -m http.server 5500` from `frontend/`. Tests: `python -m pytest -q` in `backend/`.
 
 ## Limitations
 - Only the 250 most relevant abstracts are read, so rare or recently reported genes can be missed.
