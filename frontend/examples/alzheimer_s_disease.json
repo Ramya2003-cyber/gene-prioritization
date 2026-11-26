@@ -1,0 +1,713 @@
+{
+ "topic": "Alzheimer's disease",
+ "k": 10,
+ "created_at": "2026-11-26T09:03:19+00:00",
+ "mode": "literature-only",
+ "model": null,
+ "stats": {
+  "abstracts_matched": 184182,
+  "abstracts_used": 250,
+  "abstracts_annotated": 243,
+  "human_genes_found": 128,
+  "candidates_ranked": 20,
+  "llm_reviewed": 0,
+  "llm_calls": 0,
+  "llm_tokens": 0,
+  "network_edges": 59,
+  "elapsed_s": 68.0
+ },
+ "weights": {
+  "literature": 0.4,
+  "llm_relevance": 0.4,
+  "llm_evidence": 0.15,
+  "network": 0.05
+ },
+ "genes": [
+  {
+   "symbol": "MAPT",
+   "name": "microtubule associated protein tau",
+   "ncbi_id": "4137",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/4137",
+   "papers": 66,
+   "mentions": 248,
+   "degree": 10,
+   "partners": [
+    "AKT1",
+    "APOE",
+    "APP",
+    "BCHE",
+    "GFAP",
+    "NEFL",
+    "PSEN1",
+    "SNCA",
+    "TARDBP",
+    "TREM2"
+   ],
+   "score": 0.4357,
+   "score_parts": {
+    "literature": 0.4,
+    "llm_relevance": 0.0,
+    "llm_evidence": 0.0,
+    "network": 0.0357
+   },
+   "relevance": null,
+   "rationale": "",
+   "evidence": [
+    {
+     "pmid": "42046390",
+     "text": "Medial temporal lobe Tau-Neurodegeneration mismatch from structural imaging and plasma biomarkers.",
+     "mention": "Tau",
+     "label": null
+    },
+    {
+     "pmid": "42222332",
+     "text": "Despite many years of extensive research into the etiology and treatment of Alzheimer's disease, based on the importance of amyloid and tau protein as causative factors, these studies have stalled, have not brought any breakthroughs and, most importantly, have not led to any final conclusions.",
+     "mention": "tau",
+     "label": null
+    },
+    {
+     "pmid": "42582463",
+     "text": "Analyses were replicated in vivo using amyloid- and tau-PET positivity (A+T+) as a surrogate for Alzheimer's disease pathology.",
+     "mention": "tau",
+     "label": null
+    },
+    {
+     "pmid": "42678680",
+     "text": "Glymphatic dysfunction has been implicated in Alzheimer's disease (AD), but its position relative to amyloid and tau biomarkers remains unclear.",
+     "mention": "tau",
+     "label": null
+    },
+    {
+     "pmid": "42694129",
+     "text": "As a result, it is perhaps unsurprising that tau pathology and neurodegeneration affect sleep and stress circuitry in the brain, including the Locus Coeruleus and Lateral Hypothalamus, beginning in prodromal phases of Alzheimer's disease.",
+     "mention": "tau",
+     "label": null
+    },
+    {
+     "pmid": "42712681",
+     "text": "Brain multiomic profiling identifies tau-related transcriptomic dysregulation in Alzheimer's disease.",
+     "mention": "tau",
+     "label": null
+    }
+   ],
+   "rank": 1
+  },
+  {
+   "symbol": "APP",
+   "name": "amyloid beta precursor protein",
+   "ncbi_id": "351",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/351",
+   "papers": 54,
+   "mentions": 126,
+   "degree": 14,
+   "partners": [
+    "AKT1",
+    "APOE",
+    "BCHE",
+    "BDNF",
+    "GFAP",
+    "IL1B",
+    "IL6",
+    "MAPT",
+    "NEFL",
+    "NFKB1",
+    "PSEN1",
+    "SNCA",
+    "TARDBP",
+    "TREM2"
+   ],
+   "score": 0.4238,
+   "score_parts": {
+    "literature": 0.3738,
+    "llm_relevance": 0.0,
+    "llm_evidence": 0.0,
+    "network": 0.05
+   },
+   "relevance": null,
+   "rationale": "",
+   "evidence": [
+    {
+     "pmid": "41906816",
+     "text": "Abnormal amyloid beta and microtubule-associated protein are two intimately related proteinopathies central to the pathophysiology of Alzheimer disease (AD).",
+     "mention": "amyloid beta",
+     "label": null
+    },
+    {
+     "pmid": "42222332",
+     "text": "Current advances in understanding the ischemic etiology of Alzheimer's disease have revealed dysregulation of Alzheimer's disease-associated genes, including secretases, amyloid precursor protein, apoptosis, autophagy, mitophagy, tau protein, alpha-synuclein, apolipoproteins, LRP1, and RAGE.",
+     "mention": "amyloid precursor protein",
+     "label": null
+    },
+    {
+     "pmid": "42678680",
+     "text": "Amyloid PET, tau PET, plasma amyloid-beta 42/40 ratio, plasma phosphorylated-tau 217, and ALPS index were analyzed with a data-driven event-based model.",
+     "mention": "amyloid-beta",
+     "label": null
+    },
+    {
+     "pmid": "42714614",
+     "text": "Alzheimer's disease, the leading cause of dementia, is defined by extracellular amyloid-beta (Abeta) plaques, intracellular tau aggregates and neurodegeneration.",
+     "mention": "amyloid-beta",
+     "label": null
+    },
+    {
+     "pmid": "42725517",
+     "text": "Tau-pathology, neuroinflammation, amyloid-beta build-up, and cognitive decline in Alzheimer's disease are all becoming gradually linked to dysregulation of the system.",
+     "mention": "amyloid-beta",
+     "label": null
+    },
+    {
+     "pmid": "42751194",
+     "text": "While rare, highly penetrant variants in APP, PSEN1 and PSEN2 are associated with early-onset Alzheimer's disease, especially its familial form, the disease in general is shaped by a complex interplay of various genetic factors.",
+     "mention": "APP",
+     "label": null
+    }
+   ],
+   "rank": 2
+  },
+  {
+   "symbol": "APOE",
+   "name": "apolipoprotein E",
+   "ncbi_id": "348",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/348",
+   "papers": 26,
+   "mentions": 78,
+   "degree": 10,
+   "partners": [
+    "APP",
+    "BCHE",
+    "BDNF",
+    "GFAP",
+    "IL1B",
+    "IL6",
+    "MAPT",
+    "PSEN1",
+    "SNCA",
+    "TREM2"
+   ],
+   "score": 0.3501,
+   "score_parts": {
+    "literature": 0.3143,
+    "llm_relevance": 0.0,
+    "llm_evidence": 0.0,
+    "network": 0.0357
+   },
+   "relevance": null,
+   "rationale": "",
+   "evidence": [
+    {
+     "pmid": "41906816",
+     "text": "Both are often accompanied by cholesterol dysmetabolism and/or altered transport of this neutral lipid in carriers of the APOEepsilon4 (apolipoprotein E gene epsilon 4 allele), a causal gene for early-onset (familial) AD and the most important genetic risk factor for late-onset AD.",
+     "mention": "apolipoprotein E",
+     "label": null
+    },
+    {
+     "pmid": "42692040",
+     "text": "p=0 0057), and APOE epsilon4 carriership (1 61 per year [1 04-2 49]; p=0 034), independent of age.",
+     "mention": "APOE",
+     "label": null
+    },
+    {
+     "pmid": "42712681",
+     "text": "…ociate with Alzheimer's disease endophenotypes, including neuropathology measures (Braak stage, Thal phase and cerebral amyloid angiopathy score) and Alzheimer's disease-related brain protein levels (Apolipoprotein E, Amyloid-beta 40, Amyloid-beta 42, tau and phospho-Tau).…",
+     "mention": "Apolipoprotein E",
+     "label": null
+    },
+    {
+     "pmid": "42714614",
+     "text": "The risk is higher in APOE4 homozygotes, anticoagulation or cerebrovascular diseases.",
+     "mention": "APOE4",
+     "label": null
+    },
+    {
+     "pmid": "42749454",
+     "text": "Genetic susceptibility of Alzheimer's disease associated with APOE polymorphism: systematic review and bibliometric study.",
+     "mention": "APOE",
+     "label": null
+    },
+    {
+     "pmid": "42811779",
+     "text": "The prediction model achieved area under the curve (AUC) = 0.718, outperforming demographics+apolipoprotein E (APOE) status alone (AUC = 0.678).",
+     "mention": "apolipoprotein E",
+     "label": null
+    }
+   ],
+   "rank": 3
+  },
+  {
+   "symbol": "GFAP",
+   "name": "glial fibrillary acidic protein",
+   "ncbi_id": "2670",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/2670",
+   "papers": 9,
+   "mentions": 24,
+   "degree": 9,
+   "partners": [
+    "APOE",
+    "APP",
+    "BDNF",
+    "IL1B",
+    "IL6",
+    "MAPT",
+    "NEFL",
+    "PSEN1",
+    "VIM"
+   ],
+   "score": 0.2547,
+   "score_parts": {
+    "literature": 0.2226,
+    "llm_relevance": 0.0,
+    "llm_evidence": 0.0,
+    "network": 0.0321
+   },
+   "relevance": null,
+   "rationale": "",
+   "evidence": [
+    {
+     "pmid": "43003833",
+     "text": "Integration across all three analytical branches nominates high-confidence convergent programs including astrocytic stress markers (such as GFAP, MT2A), neuronal signaling genes (like RASGEF1B, LINGO1, NRG1), and microglial and oligodendrocyte regulators (including SYTL3, SPP1, APOD).",
+     "mention": "GFAP",
+     "label": null
+    },
+    {
+     "pmid": "43011218",
+     "text": "In this multicentre study, we used the Simoa HD-X platform to measure plasma phospho-tau (p-tau) species (p-tau217 and p-tau205), Glial fibrillary acidic protein (GFAP), Neurofilament light (NfL) and amyloid-beta species (Abeta1-40 and Abeta1-42) in healthy term newborns (n = 42), aged controls (n = 41) and patients with Alzheimer's disease (n = 73).",
+     "mention": "Glial fibrillary acidic protein",
+     "label": null
+    },
+    {
+     "pmid": "43037040",
+     "text": "The clinical utility of measuring blood levels of GFAP, ApoE4, Apoepsilon4, sTREM2, BDNF, inflammatory cytokines and beta-synuclein in Alzheimer's disease is discussed.",
+     "mention": "GFAP",
+     "label": null
+    },
+    {
+     "pmid": "42739194",
+     "text": "Plasma Glial Fibrillary Acidic Protein and Neurofilament Light Chain Concentrations Are Inversely Associated with Retinal Microvascular Perfusion and Vessel Density in Cognitively Normal Individuals with Familial or Genetic Risk Factors for Alzheimer's Disease.",
+     "mention": "Glial Fibrillary Acidic Protein",
+     "label": null
+    },
+    {
+     "pmid": "42867762",
+     "text": "Particular emphasis is placed on amyloid-beta 42/40 ratio, phosphorylated tau isoforms, neurofilament light chain, and glial fibrillary acidic protein, which collectively reflect amyloid pathology, tau-associated neurodegeneration, axonal injury, and glial activation.",
+     "mention": "glial fibrillary acidic protein",
+     "label": null
+    },
+    {
+     "pmid": "43043965",
+     "text": "The integration of standardized targeted serum metabolomics with APOE epsilon4 genotype provides complementary predictive information beyond established genetic risk factors and may serve as a complementary tool alongside state-of-the-art plasma biomarkers such as p-tau217 and GFAP.",
+     "mention": "GFAP",
+     "label": null
+    }
+   ],
+   "rank": 4
+  },
+  {
+   "symbol": "SNCA",
+   "name": "synuclein alpha",
+   "ncbi_id": "6622",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/6622",
+   "papers": 4,
+   "mentions": 7,
+   "degree": 7,
+   "partners": [
+    "AKT1",
+    "APOE",
+    "APP",
+    "BDNF",
+    "MAPT",
+    "PSEN1",
+    "TARDBP"
+   ],
+   "score": 0.1775,
+   "score_parts": {
+    "literature": 0.1525,
+    "llm_relevance": 0.0,
+    "llm_evidence": 0.0,
+    "network": 0.025
+   },
+   "relevance": null,
+   "rationale": "",
+   "evidence": [
+    {
+     "pmid": "42222332",
+     "text": "Current advances in understanding the ischemic etiology of Alzheimer's disease have revealed dysregulation of Alzheimer's disease-associated genes, including secretases, amyloid precursor protein, apoptosis, autophagy, mitophagy, tau protein, alpha-synuclein, apolipoproteins, LRP1, and RAGE.",
+     "mention": "alpha-synuclein",
+     "label": null
+    },
+    {
+     "pmid": "42716045",
+     "text": "Multiple fluid biomarkers are needed to capture the complexity of disease mechanisms for precise diagnosis and to measure the diverse pathologies that lead to dementia, such as vascular, alpha-synuclein, and TDP-43 pathologies.",
+     "mention": "alpha-synuclein",
+     "label": null
+    },
+    {
+     "pmid": "42966519",
+     "text": "…n of intersectin-1 to preserve mitophagy and synaptic vesicle recycling, melanin-concentrating hormone prevention of memory loss, chimeric (brain astrocyte) antigen-astrocyte reduction in Abeta load, PD-1 immune checkpoint inhibitor suppression of neuroinflammation, and reduction in oxidative stress by phytochemicals or MitoVitE.…",
+     "mention": "PD-1",
+     "label": null
+    },
+    {
+     "pmid": "43041666",
+     "text": "Among the AD-associated targets, alpha-synyclein (SNCA) was prioritized for detailed structural analysis based on its docking interactions with the screened constituents.",
+     "mention": "SNCA",
+     "label": null
+    }
+   ],
+   "rank": 5
+  },
+  {
+   "symbol": "NEFL",
+   "name": "neurofilament light chain",
+   "ncbi_id": "4747",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/4747",
+   "papers": 3,
+   "mentions": 10,
+   "degree": 5,
+   "partners": [
+    "APP",
+    "GFAP",
+    "MAPT",
+    "TARDBP",
+    "VIM"
+   ],
+   "score": 0.1601,
+   "score_parts": {
+    "literature": 0.1422,
+    "llm_relevance": 0.0,
+    "llm_evidence": 0.0,
+    "network": 0.0179
+   },
+   "relevance": null,
+   "rationale": "",
+   "evidence": [
+    {
+     "pmid": "43011218",
+     "text": "In this multicentre study, we used the Simoa HD-X platform to measure plasma phospho-tau (p-tau) species (p-tau217 and p-tau205), Glial fibrillary acidic protein (GFAP), Neurofilament light (NfL) and amyloid-beta species (Abeta1-40 and Abeta1-42) in healthy term newborns (n = 42), aged controls (n = 41) and patients with Alzheimer's disease (n = 73).",
+     "mention": "Neurofilament light",
+     "label": null
+    },
+    {
+     "pmid": "42739194",
+     "text": "Plasma Glial Fibrillary Acidic Protein and Neurofilament Light Chain Concentrations Are Inversely Associated with Retinal Microvascular Perfusion and Vessel Density in Cognitively Normal Individuals with Familial or Genetic Risk Factors for Alzheimer's Disease.",
+     "mention": "Neurofilament Light Chain",
+     "label": null
+    },
+    {
+     "pmid": "42665661",
+     "text": "We included participants with complete baseline plasma biomarkers (p-tau217, Abeta42, Abeta40, NfL, GFAP), tau PET, and demographics, including: cognitively normal = 229, mild cognitive impairment = 149, and Alzheimer's disease dementia = 41.",
+     "mention": "NfL",
+     "label": null
+    }
+   ],
+   "rank": 6
+  },
+  {
+   "symbol": "PSEN1",
+   "name": "presenilin 1",
+   "ncbi_id": "5663",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/5663",
+   "papers": 3,
+   "mentions": 4,
+   "degree": 6,
+   "partners": [
+    "APOE",
+    "APP",
+    "GFAP",
+    "MAPT",
+    "SNCA",
+    "TREM2"
+   ],
+   "score": 0.1496,
+   "score_parts": {
+    "literature": 0.1281,
+    "llm_relevance": 0.0,
+    "llm_evidence": 0.0,
+    "network": 0.0214
+   },
+   "relevance": null,
+   "rationale": "",
+   "evidence": [
+    {
+     "pmid": "42751194",
+     "text": "While rare, highly penetrant variants in APP, PSEN1 and PSEN2 are associated with early-onset Alzheimer's disease, especially its familial form, the disease in general is shaped by a complex interplay of various genetic factors.",
+     "mention": "PSEN1",
+     "label": null
+    },
+    {
+     "pmid": "42889177",
+     "text": "Methods: We generated isogenic human induced pluripotent stem cell (hiPSC)-derived neural cultures harboring either PSEN1 E280A or amyloid precursor protein duplication (APPdp) mutations, with and without the APOE3ch variant, using prime editing.",
+     "mention": "PSEN1",
+     "label": null
+    },
+    {
+     "pmid": "42426493",
+     "text": "Genetic testing revealed a heterozygous PSEN1 c.349 C > T (p.",
+     "mention": "PSEN1",
+     "label": null
+    }
+   ],
+   "rank": 7
+  },
+  {
+   "symbol": "TARDBP",
+   "name": "TAR DNA binding protein",
+   "ncbi_id": "23435",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/23435",
+   "papers": 3,
+   "mentions": 6,
+   "degree": 4,
+   "partners": [
+    "APP",
+    "MAPT",
+    "NEFL",
+    "SNCA"
+   ],
+   "score": 0.1484,
+   "score_parts": {
+    "literature": 0.1342,
+    "llm_relevance": 0.0,
+    "llm_evidence": 0.0,
+    "network": 0.0143
+   },
+   "relevance": null,
+   "rationale": "",
+   "evidence": [
+    {
+     "pmid": "42582463",
+     "text": "In the late-onset group, limbic-predominant age-related TDP-43 encephalopathy occurred in 31% of the cases, followed by Lewy body pathology (28.8%) and primary age-related tauopathy (24.3%).",
+     "mention": "TDP-43",
+     "label": null
+    },
+    {
+     "pmid": "42716045",
+     "text": "Multiple fluid biomarkers are needed to capture the complexity of disease mechanisms for precise diagnosis and to measure the diverse pathologies that lead to dementia, such as vascular, alpha-synuclein, and TDP-43 pathologies.",
+     "mention": "TDP-43",
+     "label": null
+    },
+    {
+     "pmid": "42989530",
+     "text": "Disease progression in probable limbic-predominant age-related TDP-43 encephalopathy.",
+     "mention": "TDP-43",
+     "label": null
+    }
+   ],
+   "rank": 8
+  },
+  {
+   "symbol": "SPP1",
+   "name": "secreted phosphoprotein 1",
+   "ncbi_id": "6696",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/6696",
+   "papers": 3,
+   "mentions": 8,
+   "degree": 2,
+   "partners": [
+    "AKT1",
+    "IL6"
+   ],
+   "score": 0.1458,
+   "score_parts": {
+    "literature": 0.1387,
+    "llm_relevance": 0.0,
+    "llm_evidence": 0.0,
+    "network": 0.0071
+   },
+   "relevance": null,
+   "rationale": "",
+   "evidence": [
+    {
+     "pmid": "43003833",
+     "text": "Integration across all three analytical branches nominates high-confidence convergent programs including astrocytic stress markers (such as GFAP, MT2A), neuronal signaling genes (like RASGEF1B, LINGO1, NRG1), and microglial and oligodendrocyte regulators (including SYTL3, SPP1, APOD).",
+     "mention": "SPP1",
+     "label": null
+    },
+    {
+     "pmid": "43018819",
+     "text": "only two core genes (SPP1 and CHST3) were found in Alzheimer's disease).",
+     "mention": "SPP1",
+     "label": null
+    },
+    {
+     "pmid": "42552722",
+     "text": "Predicting Relevant Microglia-Associated Cell-Cell Communication Pathways in Alzheimer's Disease: A Role for SPP1.",
+     "mention": "SPP1",
+     "label": null
+    }
+   ],
+   "rank": 9
+  },
+  {
+   "symbol": "TREM2",
+   "name": "triggering receptor expressed on myeloid cells 2",
+   "ncbi_id": "54209",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/54209",
+   "papers": 2,
+   "mentions": 10,
+   "degree": 6,
+   "partners": [
+    "APOE",
+    "APP",
+    "IL1B",
+    "IL6",
+    "MAPT",
+    "PSEN1"
+   ],
+   "score": 0.1431,
+   "score_parts": {
+    "literature": 0.1216,
+    "llm_relevance": 0.0,
+    "llm_evidence": 0.0,
+    "network": 0.0214
+   },
+   "relevance": null,
+   "rationale": "",
+   "evidence": [
+    {
+     "pmid": "43041904",
+     "text": "Novel Compounds as TREM2 Agonists for Treating Parkinson's Disease, Alzheimer's Disease, Amyotrophic Lateral Sclerosis, Frontotemporal Dementia, Nasu-Hakola Disease, and Stroke.",
+     "mention": "TREM2",
+     "label": null
+    },
+    {
+     "pmid": "43037788",
+     "text": "The emerging role of microglial TREM2 in Alzheimer's Disease: pathogenesis and therapeutic implications.",
+     "mention": "TREM2",
+     "label": null
+    }
+   ],
+   "rank": 10
+  }
+ ],
+ "network": [
+  [
+   "APOE",
+   "APP",
+   0.999
+  ],
+  [
+   "APOE",
+   "GFAP",
+   0.724
+  ],
+  [
+   "APOE",
+   "MAPT",
+   0.998
+  ],
+  [
+   "APOE",
+   "PSEN1",
+   0.936
+  ],
+  [
+   "APOE",
+   "SNCA",
+   0.999
+  ],
+  [
+   "APOE",
+   "TREM2",
+   0.982
+  ],
+  [
+   "APP",
+   "GFAP",
+   0.779
+  ],
+  [
+   "APP",
+   "MAPT",
+   0.999
+  ],
+  [
+   "APP",
+   "NEFL",
+   0.915
+  ],
+  [
+   "APP",
+   "PSEN1",
+   0.999
+  ],
+  [
+   "APP",
+   "SNCA",
+   0.999
+  ],
+  [
+   "APP",
+   "TARDBP",
+   0.741
+  ],
+  [
+   "APP",
+   "TREM2",
+   0.908
+  ],
+  [
+   "GFAP",
+   "MAPT",
+   0.93
+  ],
+  [
+   "GFAP",
+   "NEFL",
+   0.974
+  ],
+  [
+   "GFAP",
+   "PSEN1",
+   0.794
+  ],
+  [
+   "MAPT",
+   "NEFL",
+   0.887
+  ],
+  [
+   "MAPT",
+   "PSEN1",
+   0.962
+  ],
+  [
+   "MAPT",
+   "SNCA",
+   0.999
+  ],
+  [
+   "MAPT",
+   "TARDBP",
+   0.986
+  ],
+  [
+   "MAPT",
+   "TREM2",
+   0.759
+  ],
+  [
+   "NEFL",
+   "TARDBP",
+   0.702
+  ],
+  [
+   "PSEN1",
+   "SNCA",
+   0.81
+  ],
+  [
+   "PSEN1",
+   "TREM2",
+   0.895
+  ],
+  [
+   "SNCA",
+   "TARDBP",
+   0.948
+  ]
+ ],
+ "warnings": [
+  "Used the 250 most relevant of 184,182 matching abstracts; a larger corpus could change lower ranks.",
+  "No LLM API key is configured on the server; ranking uses literature and network signals only."
+ ]
+}

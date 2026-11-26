@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gene Prioritizer · LLM-assisted literature gene ranking</title>
+  <meta name="description" content="Enter a biomedical topic and get the top-k human genes, ranked from PubMed literature with LLM evidence review.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230f766e'/><path d='M10 6c0 7 12 7 12 14s-12 7-12 6M22 6c0 7-12 7-12 14s12 7 12 6' stroke='white' stroke-width='2.4' fill='none' stroke-linecap='round'/></svg>">
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js"></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="./">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8"/><path d="M10 6c0 7 12 7 12 14s-12 7-12 6M22 6c0 7-12 7-12 14s12 7 12 6"/></svg>
+        <span>Gene Prioritizer</span>
+      </a>
+      <nav>
+        <a href="#method">How it works</a>
+        <a id="repo-link" href="#" target="_blank" rel="noopener">GitHub</a>
+        <span id="server-status" class="status-pill" title="Backend status"><i></i><span>Checking server…</span></span>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <p class="eyebrow">LLM-assisted literature mining</p>
+      <h1>Rank the human genes behind any biomedical topic.</h1>
+      <p class="lede">Type a disease, process or phenotype. The app reads the most relevant PubMed abstracts, finds the human genes they mention, has an LLM judge the evidence sentence by sentence, and returns the top&nbsp;<em>k</em> with citations.</p>
+
+      <form id="search-form" class="search-card" autocomplete="off">
+        <label class="field topic-field">
+          <span>Research topic</span>
+          <input id="topic" name="topic" type="text" maxlength="200" required placeholder="e.g. ferroptosis, Alzheimer's disease, hypoxia">
+        </label>
+        <div class="field k-field">
+          <span id="k-label">Genes (k)</span>
+          <div class="stepper" role="group" aria-labelledby="k-label">
+            <button type="button" data-step="-1" aria-label="Fewer genes">−</button>
+            <input id="k" name="k" type="number" min="1" max="50" value="10" inputmode="numeric" aria-labelledby="k-label">
+            <button type="button" data-step="1" aria-label="More genes">+</button>
+          </div>
+        </div>
+        <button id="submit" class="primary" type="submit">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          Rank genes
+        </button>
+      </form>
+      <div class="examples">
+        <span>Try a precomputed example:</span>
+        <div id="example-chips" class="chips"></div>
+      </div>
+    </section>
+
+    <section id="progress" class="wrap panel progress" hidden>
+      <div class="progress-head">
+        <h2>Working on <span id="progress-topic"></span></h2>
+        <span id="elapsed" class="muted mono">0 s</span>
+      </div>
+      <ol id="steps" class="steps"></ol>
+      <p id="progress-message" class="muted"></p>
+      <p id="coldstart" class="note" hidden>The free backend sleeps when idle; the first search after a break can take an extra minute while it wakes up.</p>
+    </section>
+
+    <section id="error" class="wrap panel error" hidden role="alert"></section>
+
+    <section id="results" class="wrap" hidden>
+      <div class="results-head">
+        <div>
+          <h2 id="results-title"></h2>
+          <p id="results-meta" class="muted"></p>
+        </div>
+        <div class="actions">
+          <button id="dl-csv" class="ghost" type="button">Download CSV</button>
+          <button id="dl-json" class="ghost" type="button">Download JSON</button>
+        </div>
+      </div>
+      <div id="stats" class="stats"></div>
+      <details id="warnings" class="warnings" hidden><summary></summary><ul></ul></details>
+
+      <div class="results-grid">
+        <div>
+          <div class="legend">
+            <span><i class="sw lit"></i>Literature</span>
+            <span><i class="sw rel"></i>LLM relevance</span>
+            <span><i class="sw evi"></i>LLM evidence</span>
+            <span><i class="sw net"></i>Network</span>
+          </div>
+          <ol id="gene-list" class="gene-list"></ol>
+        </div>
+        <aside class="side">
+          <div class="panel">
+            <h3>Interaction network</h3>
+            <p class="muted small">High-confidence STRING interactions (score ≥ 0.7) among the returned genes. Node size reflects score; colour reflects LLM relevance.</p>
+            <svg id="network" viewBox="0 0 360 360" role="img" aria-label="Interaction network among ranked genes"></svg>
+            <div class="legend small">
+              <span><i class="dot core"></i>Core</span><span><i class="dot supporting"></i>Supporting</span>
+              <span><i class="dot peripheral"></i>Peripheral</span><span><i class="dot unrelated"></i>Unrelated</span>
+              <span><i class="dot none"></i>Not reviewed</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="method" class="wrap method">
+      <h2>How it works</h2>
+      <ol class="pipeline">
+        <li><b>Search</b><span>Europe PMC returns the 250 most relevant PubMed abstracts that mention the topic.</span></li>
+        <li><b>Annotate</b><span>PubTator3 marks every gene mention and links it to an NCBI Gene ID.</span></li>
+        <li><b>Verify</b><span>MyGene.info keeps only confirmed human genes, with official symbols.</span></li>
+        <li><b>Shortlist</b><span>Candidates are ordered by how many papers mention them.</span></li>
+        <li><b>LLM review</b><span>An LLM reads the exact sentences and labels each gene core, supporting, peripheral or unrelated, with cited reasons.</span></li>
+        <li><b>Rank</b><span>A transparent weighted score combines the signals; STRING interactions add a small bonus.</span></li>
+      </ol>
+      <div class="method-grid">
+        <div class="panel">
+          <h3>Score</h3>
+          <p class="mono small">score = 0.40·literature + 0.40·LLM relevance + 0.15·LLM evidence + 0.05·network</p>
+          <p class="small">Literature is log paper breadth scaled within the topic. Relevance is core 1 / supporting 0.6 / peripheral 0.25 / unrelated 0. Evidence is the mean sentence label (direct 1 / indirect 0.5 / background 0.1). The network term is kept small on purpose so highly connected "hub" genes cannot outrank genes the literature is actually about.</p>
+        </div>
+        <div class="panel">
+          <h3>Guardrails &amp; limits</h3>
+          <ul class="small">
+            <li>The LLM only judges sentences it is given; unknown genes, passage IDs or labels are dropped and reported, never trusted.</li>
+            <li>No gene is invented: if fewer than <em>k</em> human genes are found, you get fewer.</li>
+            <li>Scores rank literature evidence; they are not probabilities of causality.</li>
+            <li>Only a relevance-ordered sample of abstracts is read, so rare genes can be missed.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap footer">
+    Data: <a href="https://europepmc.org" target="_blank" rel="noopener">Europe PMC</a> ·
+    <a href="https://www.ncbi.nlm.nih.gov/research/pubtator3/" target="_blank" rel="noopener">PubTator3</a> ·
+    <a href="https://mygene.info" target="_blank" rel="noopener">MyGene.info</a> ·
+    <a href="https://string-db.org" target="_blank" rel="noopener">STRING</a>.
+    For research exploration only, not clinical use.
+  </footer>
+</body>
+</html>

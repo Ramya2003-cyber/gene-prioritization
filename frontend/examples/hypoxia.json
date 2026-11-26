@@ -1,0 +1,675 @@
+{
+ "topic": "hypoxia",
+ "k": 10,
+ "created_at": "2026-11-26T09:03:54+00:00",
+ "mode": "literature-only",
+ "model": null,
+ "stats": {
+  "abstracts_matched": 154401,
+  "abstracts_used": 250,
+  "abstracts_annotated": 228,
+  "human_genes_found": 195,
+  "candidates_ranked": 20,
+  "llm_reviewed": 0,
+  "llm_calls": 0,
+  "llm_tokens": 0,
+  "network_edges": 58,
+  "elapsed_s": 35.3
+ },
+ "weights": {
+  "literature": 0.4,
+  "llm_relevance": 0.4,
+  "llm_evidence": 0.15,
+  "network": 0.05
+ },
+ "genes": [
+  {
+   "symbol": "HIF1A",
+   "name": "hypoxia inducible factor 1 subunit alpha",
+   "ncbi_id": "3091",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/3091",
+   "papers": 41,
+   "mentions": 130,
+   "degree": 14,
+   "partners": [
+    "AKT1",
+    "ARNT",
+    "CA9",
+    "CD274",
+    "CDH1",
+    "CXCL8",
+    "EGLN1",
+    "EP300",
+    "EPAS1",
+    "LDHA",
+    "NFE2L2",
+    "SLC2A1",
+    "TNF",
+    "TP53"
+   ],
+   "score": 0.45,
+   "score_parts": {
+    "literature": 0.4,
+    "llm_relevance": 0.0,
+    "llm_evidence": 0.0,
+    "network": 0.05
+   },
+   "relevance": null,
+   "rationale": "",
+   "evidence": [
+    {
+     "pmid": "42723198",
+     "text": "Suppressing the early hypoxic response by premature oxygen supplementation lowers HIF-1alpha, attenuates angiogenesis, and ultimately compromises long-term regeneration, whereas prolonged hypoxia ex vivo causes axonal and myelin injury.",
+     "mention": "HIF-1alpha",
+     "label": null
+    },
+    {
+     "pmid": "42860443",
+     "text": "Knockdown of HMGB1 expression inhibits hypoxia-induced NLRP3, cleaved-caspase-1, and HIF-1alpha expression.",
+     "mention": "HIF-1alpha",
+     "label": null
+    },
+    {
+     "pmid": "42896440",
+     "text": "HIF-1alpha, unlike HIF-2alpha, directly interacts with the promoter of SATB2, promoting its expression in hypoxic environments.",
+     "mention": "HIF-1alpha",
+     "label": null
+    },
+    {
+     "pmid": "42956572",
+     "text": "Gene expression analysis further revealed that HIF1A mRNA expression was significantly increased in the hydrogel condition compared to normoxic and hypoxic groups.",
+     "mention": "HIF1A",
+     "label": null
+    },
+    {
+     "pmid": "42957192",
+     "text": "HIF1A and EPAS1-mediated transcriptional responses were characterised in CRISPR knockdown HBE cells.",
+     "mention": "HIF1A",
+     "label": null
+    },
+    {
+     "pmid": "42983211",
+     "text": "Hypoxia- inducible factor 1-alpha (HIF-1alpha), a central regulator of this response, is tightly controlled by prolyl hydroxylase domain protein 2 (PHD2), encoded by EGLN1.",
+     "mention": "Hypoxia- inducible factor 1-alpha",
+     "label": null
+    }
+   ],
+   "rank": 1
+  },
+  {
+   "symbol": "VEGFA",
+   "name": "vascular endothelial growth factor A",
+   "ncbi_id": "7422",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/7422",
+   "papers": 15,
+   "mentions": 28,
+   "degree": 0,
+   "partners": [],
+   "score": 0.2917,
+   "score_parts": {
+    "literature": 0.2917,
+    "llm_relevance": 0.0,
+    "llm_evidence": 0.0,
+    "network": 0.0
+   },
+   "relevance": null,
+   "rationale": "",
+   "evidence": [
+    {
+     "pmid": "42723198",
+     "text": "Macrophage-specific Dab1 deletion diminishes HIF-1alpha/VEGF-A signaling, impairs vascular remodeling, and delays nerve regeneration, whereas enhancing Dab1 signaling improves the regenerative microenvironment.",
+     "mention": "VEGF-A",
+     "label": null
+    },
+    {
+     "pmid": "42983211",
+     "text": "PHD2-KD HUVECs exhibited increased VEGFA transcript levels (6.5-fold under normoxia and 5.3-fold under hypoxia) and secreted VEGF concentrations (6.6-fold and 9.4-fold, respectively), together with early increases in HIF1A transcript and HIF-1alpha protein levels and lower TNF-alpha concentrations.",
+     "mention": "VEGFA",
+     "label": null
+    },
+    {
+     "pmid": "43004279",
+     "text": "BACKGROUND: Intravitreal anti-vascular endothelial growth factor (anti-VEGF) therapy has become an established treatment for type 1 retinopathy of prematurity (ROP).",
+     "mention": "vascular endothelial growth factor",
+     "label": null
+    },
+    {
+     "pmid": "43011101",
+     "text": "TIPARP was preferentially enriched in high-hypoxic macrophages and experimentally validated as responsive to hypoxia and inflammatory stimulation, with knockdown can enhance HIF1A and VEGF induction.",
+     "mention": "VEGF",
+     "label": null
+    },
+    {
+     "pmid": "42252105",
+     "text": "While hypoxia is a known stimulus for angiogenic sprouting generally, the exact mechanisms by which hypoxia, and resultant increased VEGFA, influences vessel growth in the heart are not clearly delineated.",
+     "mention": "VEGFA",
+     "label": null
+    },
+    {
+     "pmid": "42650831",
+     "text": "VEGF-A, VEGF-C, and TNF-beta secretion increased, while PLGF, TGF-alpha, IL-27, GM-CSF, and M-CSF decreased under hypoxic (CH and SH) conditions.",
+     "mention": "VEGF-A",
+     "label": null
+    }
+   ],
+   "rank": 2
+  },
+  {
+   "symbol": "EPAS1",
+   "name": "endothelial PAS domain protein 1",
+   "ncbi_id": "2034",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/2034",
+   "papers": 8,
+   "mentions": 18,
+   "degree": 7,
+   "partners": [
+    "ARNT",
+    "CA9",
+    "EGLN1",
+    "EP300",
+    "HIF1A",
+    "NFE2L2",
+    "SLC2A1"
+   ],
+   "score": 0.2617,
+   "score_parts": {
+    "literature": 0.2367,
+    "llm_relevance": 0.0,
+    "llm_evidence": 0.0,
+    "network": 0.025
+   },
+   "relevance": null,
+   "rationale": "",
+   "evidence": [
+    {
+     "pmid": "42896440",
+     "text": "HIF-1alpha, unlike HIF-2alpha, directly interacts with the promoter of SATB2, promoting its expression in hypoxic environments.",
+     "mention": "HIF-2alpha",
+     "label": null
+    },
+    {
+     "pmid": "42957192",
+     "text": "HIF1A and EPAS1-mediated transcriptional responses were characterised in CRISPR knockdown HBE cells.",
+     "mention": "EPAS1",
+     "label": null
+    },
+    {
+     "pmid": "43008310",
+     "text": "We examined the molecular basis of hypoxia adaptation by measuring HIF-2alpha, HIF-1beta, and PHD-2 expression via qRT-PCR in whole blood of birds sampled across an altitudinal gradient.",
+     "mention": "HIF-2alpha",
+     "label": null
+    },
+    {
+     "pmid": "43044995",
+     "text": "HIF1A deficiency was associated with reduced proliferative and clonogenic capacity, impaired wound closure and alterations in hypoxia-responsive pathways, including HIF-1alpha, HIF-2alpha, and BNIP3 signaling.",
+     "mention": "HIF-2alpha",
+     "label": null
+    },
+    {
+     "pmid": "42575880",
+     "text": "Hypoxia increases the activity of oncolytic adenoviruses through HIF-2alpha-stimulated E1A expression.",
+     "mention": "HIF-2alpha",
+     "label": null
+    },
+    {
+     "pmid": "42762272",
+     "text": "Importantly, SS promoted HIF-1alpha and HIF-2alpha nuclear translocation, increased VEGF-A, LDHA, GLUT1, and HK-2 expression, decreased extracellular pH, suppressed eNOS, and enhanced antioxidant capacity more effectively than CoCl2 or DFO.",
+     "mention": "HIF-2alpha",
+     "label": null
+    }
+   ],
+   "rank": 3
+  },
+  {
+   "symbol": "SLC2A1",
+   "name": "solute carrier family 2 member 1",
+   "ncbi_id": "6513",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/6513",
+   "papers": 5,
+   "mentions": 9,
+   "degree": 7,
+   "partners": [
+    "AKT1",
+    "ARNT",
+    "CA9",
+    "EPAS1",
+    "HIF1A",
+    "LDHA",
+    "TP53"
+   ],
+   "score": 0.2161,
+   "score_parts": {
+    "literature": 0.1911,
+    "llm_relevance": 0.0,
+    "llm_evidence": 0.0,
+    "network": 0.025
+   },
+   "relevance": null,
+   "rationale": "",
+   "evidence": [
+    {
+     "pmid": "42645701",
+     "text": "We amalgamated 12 machine learning algorithms, comprising 113 distinct combinations, to refine our findings and identified four pivotal hypoxia genes: SLC2A1, PLIN2, FOSL2, and PIM1.",
+     "mention": "SLC2A1",
+     "label": null
+    },
+    {
+     "pmid": "42762272",
+     "text": "Importantly, SS promoted HIF-1alpha and HIF-2alpha nuclear translocation, increased VEGF-A, LDHA, GLUT1, and HK-2 expression, decreased extracellular pH, suppressed eNOS, and enhanced antioxidant capacity more effectively than CoCl2 or DFO.",
+     "mention": "GLUT1",
+     "label": null
+    },
+    {
+     "pmid": "42940142",
+     "text": "Expression of the hypoxia-related molecules HIF-1alpha, carbonic anhydrase IX (CA IX), glucose transporter 1 (GLUT1), vascular endothelial growth factor (VEGF), and the proliferation marker Ki-67 was evaluated.",
+     "mention": "glucose transporter 1",
+     "label": null
+    },
+    {
+     "pmid": "43004984",
+     "text": "Dissolved-oxygen kinetics, resazurin viability, phase-contrast morphology, and immunofluorescence for HIF-1alpha/-2alpha, VEGF-A, GLUT1, HK2, LDH-A, E-cadherin, and N-cadherin were assessed in normoxia and hypoxia +- metformin (1 mM, 4 mM).",
+     "mention": "GLUT1",
+     "label": null
+    },
+    {
+     "pmid": "42563418",
+     "text": "MCF-7 cells exhibited significant upregulation of SLC2A1 and increased VEGFA and NFKB1 expression, consistent with activation of glycolytic and pro-angiogenic pathways.",
+     "mention": "SLC2A1",
+     "label": null
+    }
+   ],
+   "rank": 4
+  },
+  {
+   "symbol": "TP53",
+   "name": "tumor protein p53",
+   "ncbi_id": "7157",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/7157",
+   "papers": 3,
+   "mentions": 8,
+   "degree": 11,
+   "partners": [
+    "AKT1",
+    "ARNT",
+    "CD274",
+    "CDH1",
+    "CDKN1A",
+    "EP300",
+    "HIF1A",
+    "LDHA",
+    "NFE2L2",
+    "SLC2A1",
+    "TNF"
+   ],
+   "score": 0.1955,
+   "score_parts": {
+    "literature": 0.1562,
+    "llm_relevance": 0.0,
+    "llm_evidence": 0.0,
+    "network": 0.0393
+   },
+   "relevance": null,
+   "rationale": "",
+   "evidence": [
+    {
+     "pmid": "43040918",
+     "text": "Competitive HIF-1alpha-p53 crosstalk under hypoxia: a computational model of bidirectional EMT regulation.",
+     "mention": "p53",
+     "label": null
+    },
+    {
+     "pmid": "42650831",
+     "text": "Senescence was confirmed using SA-beta Gal staining and the expression of p53 and p21 proteins, and hypoxia using HIF-1alpha protein.",
+     "mention": "p53",
+     "label": null
+    },
+    {
+     "pmid": "42883106",
+     "text": "Upregulation was observed for stress-related genes (HSP70, HSP90, mineralocorticoid receptor, and glucocorticoid receptor) and pro-apoptotic genes (p53, BAX, and Caspase-3), while Bcl-2 was downregulated.",
+     "mention": "p53",
+     "label": null
+    }
+   ],
+   "rank": 5
+  },
+  {
+   "symbol": "CAT",
+   "name": "catalase",
+   "ncbi_id": "847",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/847",
+   "papers": 5,
+   "mentions": 10,
+   "degree": 0,
+   "partners": [],
+   "score": 0.193,
+   "score_parts": {
+    "literature": 0.193,
+    "llm_relevance": 0.0,
+    "llm_evidence": 0.0,
+    "network": 0.0
+   },
+   "relevance": null,
+   "rationale": "",
+   "evidence": [
+    {
+     "pmid": "42944975",
+     "text": "Herein, microfluidics was adopted to fabricate self-oxygenated liposomes DL-86@CAT@Lip co-loaded with DL-86 and catalase (CAT).",
+     "mention": "CAT",
+     "label": null
+    },
+    {
+     "pmid": "42753464",
+     "text": "ROS, MDA, SOD, CAT, GPX4 and apoptosis were detected.",
+     "mention": "CAT",
+     "label": null
+    },
+    {
+     "pmid": "42826856",
+     "text": "To address this, we developed plant-based carbon dots (ASA@p-CD, ~8 nm) with catalase, peroxidase, glycosidase, and phosphatase-like multienzyme activities that enhance active TMZ conversion by ~1.27 fold.",
+     "mention": "catalase",
+     "label": null
+    },
+    {
+     "pmid": "42883106",
+     "text": "In the liver, superoxide dismutase and catalase activities and malondialdehyde content increased, while glutathione peroxidase activity decreased.",
+     "mention": "catalase",
+     "label": null
+    },
+    {
+     "pmid": "42513117",
+     "text": "The nanoplatform was constructed via host-guest interactions between a water-soluble pillar[5]arene (WP5) and an azobenzene-linked cyanine/YC-1 conjugate (Cy-G), followed by the co-encapsulation of glucose oxidase (GOx) and catalase (CAT).",
+     "mention": "catalase",
+     "label": null
+    }
+   ],
+   "rank": 6
+  },
+  {
+   "symbol": "NFE2L2",
+   "name": "NFE2 like bZIP transcription factor 2",
+   "ncbi_id": "4780",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/4780",
+   "papers": 3,
+   "mentions": 10,
+   "degree": 8,
+   "partners": [
+    "AKT1",
+    "CDKN1A",
+    "EP300",
+    "EPAS1",
+    "GPX4",
+    "HIF1A",
+    "TNF",
+    "TP53"
+   ],
+   "score": 0.1888,
+   "score_parts": {
+    "literature": 0.1603,
+    "llm_relevance": 0.0,
+    "llm_evidence": 0.0,
+    "network": 0.0286
+   },
+   "relevance": null,
+   "rationale": "",
+   "evidence": [
+    {
+     "pmid": "42759111",
+     "text": "Mechanistically, and in contrast to normoxia and/or acute hypoxia, chronic hypoxia diminished nuclear abundance and activity of the antioxidant transcription factor NRF2.",
+     "mention": "NRF2",
+     "label": null
+    },
+    {
+     "pmid": "42812768",
+     "text": "The literature contains extensive data regarding the roles of the transcription factors HIF, NF-kappaB (a key regulator of inflammatory processes) and NRF2 (a master regulator of antioxidant defense), as well as the roles of oxidative stress level and mitochondrial functional features, in the response to oxygen deficiency and the development of inflammation.",
+     "mention": "NRF2",
+     "label": null
+    },
+    {
+     "pmid": "42918752",
+     "text": "DNA methylation-regulated APOLD1 protects cardiomyocytes from hypoxia-induced ferroptosis by activating Nrf2 pathway in vitro.",
+     "mention": "Nrf2",
+     "label": null
+    }
+   ],
+   "rank": 7
+  },
+  {
+   "symbol": "AKT1",
+   "name": "AKT serine/threonine kinase 1",
+   "ncbi_id": "207",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/207",
+   "papers": 3,
+   "mentions": 3,
+   "degree": 12,
+   "partners": [
+    "ARNT",
+    "CD274",
+    "CDH1",
+    "CDKN1A",
+    "CXCL8",
+    "EP300",
+    "HIF1A",
+    "LDHA",
+    "NFE2L2",
+    "SLC2A1",
+    "TNF",
+    "TP53"
+   ],
+   "score": 0.1827,
+   "score_parts": {
+    "literature": 0.1398,
+    "llm_relevance": 0.0,
+    "llm_evidence": 0.0,
+    "network": 0.0429
+   },
+   "relevance": null,
+   "rationale": "",
+   "evidence": [
+    {
+     "pmid": "42939860",
+     "text": "Despite the diversity of EV cargo, these effects converge on major oncogenic pathways, including PI3K-Akt, STAT3, Wnt/beta-catenin, and PD-1/PD-L1 signaling.",
+     "mention": "Akt",
+     "label": null
+    },
+    {
+     "pmid": "42797401",
+     "text": "Methods: In this study, ARPE-19 cells were exposed to either physiological hypoxia or HIF-PHI treatment and analyzed using RNA sequencing, pathway enrichment, and pharmacological inhibition of PI3K/Akt, mTOR, and HIF-related signaling pathways.",
+     "mention": "Akt",
+     "label": null
+    },
+    {
+     "pmid": "42999736",
+     "text": "Experiments in human PA endothelial cells (PAECs) and smooth muscle cells (PASMCs) found PAECs to be a larger source of TSLP, which targets PASMCs to enhance intracellular Ca2+ responses and contractility to vasoconstrictor agonists, as well as cell proliferation and extracellular matrix deposition, acting via a number of signaling cascades including Stat3 and PI3/Akt.",
+     "mention": "Akt",
+     "label": null
+    }
+   ],
+   "rank": 8
+  },
+  {
+   "symbol": "GPX4",
+   "name": "glutathione peroxidase 4",
+   "ncbi_id": "2879",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/2879",
+   "papers": 4,
+   "mentions": 7,
+   "degree": 1,
+   "partners": [
+    "NFE2L2"
+   ],
+   "score": 0.1754,
+   "score_parts": {
+    "literature": 0.1718,
+    "llm_relevance": 0.0,
+    "llm_evidence": 0.0,
+    "network": 0.0036
+   },
+   "relevance": null,
+   "rationale": "",
+   "evidence": [
+    {
+     "pmid": "42753464",
+     "text": "ROS, MDA, SOD, CAT, GPX4 and apoptosis were detected.",
+     "mention": "GPX4",
+     "label": null
+    },
+    {
+     "pmid": "42792723",
+     "text": "The expression of ferroptosis- and hypoxia-related proteins, including GPX4, ALOX15, FABP5, PPARgamma, HIF-1alpha, and VEGF, was evaluated by Western blotting.",
+     "mention": "GPX4",
+     "label": null
+    },
+    {
+     "pmid": "42836044",
+     "text": "Our study revealed that RBC-LEHP effectively alleviated the hypoxia microenvironment through Hb-mediated oxygenation upon tumor cellular internalization and downregulated HIF-1alpha and glutathione peroxidase 4 (GPX4), while simultaneously enhancing reactive oxygen species (ROS)-mediated lipid peroxidation to induce ferroptosis.",
+     "mention": "glutathione peroxidase 4",
+     "label": null
+    },
+    {
+     "pmid": "43054179",
+     "text": "Under hypoxia, SREBF1, FASN and SCD expression was higher in both cell lines, together with CA9, GPX4, SLC7A11, AIFM2 and ACSL4.",
+     "mention": "GPX4",
+     "label": null
+    }
+   ],
+   "rank": 9
+  },
+  {
+   "symbol": "LDHA",
+   "name": "lactate dehydrogenase A",
+   "ncbi_id": "3939",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/3939",
+   "papers": 3,
+   "mentions": 4,
+   "degree": 5,
+   "partners": [
+    "AKT1",
+    "ARNT",
+    "HIF1A",
+    "SLC2A1",
+    "TP53"
+   ],
+   "score": 0.1622,
+   "score_parts": {
+    "literature": 0.1443,
+    "llm_relevance": 0.0,
+    "llm_evidence": 0.0,
+    "network": 0.0179
+   },
+   "relevance": null,
+   "rationale": "",
+   "evidence": [
+    {
+     "pmid": "42650831",
+     "text": "Hypoxia (CH and SH) upregulated the expression of many glycolysis genes, especially HK, PFK, aldolase, PDH kinase, and LDH-A. Mitochondrial RNAs (tRNA and rRNA) were increased in SH compared to CH.",
+     "mention": "LDH-A.",
+     "label": null
+    },
+    {
+     "pmid": "42762272",
+     "text": "Importantly, SS promoted HIF-1alpha and HIF-2alpha nuclear translocation, increased VEGF-A, LDHA, GLUT1, and HK-2 expression, decreased extracellular pH, suppressed eNOS, and enhanced antioxidant capacity more effectively than CoCl2 or DFO.",
+     "mention": "LDHA",
+     "label": null
+    },
+    {
+     "pmid": "43004984",
+     "text": "Dissolved-oxygen kinetics, resazurin viability, phase-contrast morphology, and immunofluorescence for HIF-1alpha/-2alpha, VEGF-A, GLUT1, HK2, LDH-A, E-cadherin, and N-cadherin were assessed in normoxia and hypoxia +- metformin (1 mM, 4 mM).",
+     "mention": "LDH-A",
+     "label": null
+    }
+   ],
+   "rank": 10
+  }
+ ],
+ "network": [
+  [
+   "AKT1",
+   "HIF1A",
+   0.946
+  ],
+  [
+   "AKT1",
+   "LDHA",
+   0.702
+  ],
+  [
+   "AKT1",
+   "NFE2L2",
+   0.908
+  ],
+  [
+   "AKT1",
+   "SLC2A1",
+   0.881
+  ],
+  [
+   "AKT1",
+   "TP53",
+   0.996
+  ],
+  [
+   "EPAS1",
+   "HIF1A",
+   0.989
+  ],
+  [
+   "EPAS1",
+   "NFE2L2",
+   0.706
+  ],
+  [
+   "EPAS1",
+   "SLC2A1",
+   0.828
+  ],
+  [
+   "GPX4",
+   "NFE2L2",
+   0.827
+  ],
+  [
+   "HIF1A",
+   "LDHA",
+   0.968
+  ],
+  [
+   "HIF1A",
+   "NFE2L2",
+   0.869
+  ],
+  [
+   "HIF1A",
+   "SLC2A1",
+   0.959
+  ],
+  [
+   "HIF1A",
+   "TP53",
+   0.999
+  ],
+  [
+   "LDHA",
+   "SLC2A1",
+   0.868
+  ],
+  [
+   "LDHA",
+   "TP53",
+   0.754
+  ],
+  [
+   "NFE2L2",
+   "TP53",
+   0.843
+  ],
+  [
+   "SLC2A1",
+   "TP53",
+   0.987
+  ]
+ ],
+ "warnings": [
+  "Used the 250 most relevant of 154,401 matching abstracts; a larger corpus could change lower ranks.",
+  "No LLM API key is configured on the server; ranking uses literature and network signals only."
+ ]
+}
