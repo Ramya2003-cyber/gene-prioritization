@@ -91,6 +91,8 @@ The LLM step uses the standard OpenAI chat-completions API, so a self-hosted mod
 
 **What the model must do:** each request is about 3–4k tokens (12 genes, up to 3 sentences each), and the model must answer with one JSON object. The app requests JSON mode, which vLLM, Ollama and llama.cpp support. If a server ignores it, JSON is still extracted from plain text. Tool calling is not used. Invalid or failed answers never break a search; they are dropped and reported.
 
+**Tested:** `qwen2.5:7b` on Ollama, on a laptop RTX 4050 GPU, with the settings above. A ferroptosis search ran end to end in about 200 s, with 2 LLM calls reviewing 20 genes and no invalid output. The labels were sensible (GPX4 and SLC7A11 *core*, the hub gene AKT1 *peripheral*), but weaker than a larger model's: rationales usually omitted sentence citations, and some well-known genes, such as TFRC, were under-rated. A ~27B model should do noticeably better.
+
 ## Tech stack
 
 ```
