@@ -50,6 +50,17 @@ flowchart LR
 score = 0.40·literature + 0.40·LLM relevance + 0.15·LLM evidence + 0.05·network
 ```
 
+Each term is scaled from 0 to 1 before weighting:
+
+| Term | Weight | What it measures | How it is calculated |
+|---|---:|---|---|
+| **Literature** | 0.40 | How widely the topic's literature mentions the gene | log(1 + papers) + 0.25·log(1 + mentions), divided by the highest value among the topic's genes. *Papers* is the number of the 250 abstracts that mention the gene; *mentions* is the total number of times it is tagged in them. |
+| **LLM relevance** | 0.40 | The LLM's overall judgement of the gene's role in the topic | core = 1, supporting = 0.6, peripheral = 0.25, unrelated = 0 (0 if not reviewed) |
+| **LLM evidence** | 0.15 | How strong the individual sentences are | The average of the LLM's labels for up to 3 sentences per gene: direct finding = 1, indirect = 0.5, background = 0.1 |
+| **Network** | 0.05 | How connected the gene is to the other candidates | The number of high-confidence STRING interactions (score ≥ 0.7) with other shortlisted genes, divided by the highest such count |
+
+**Example (ferroptosis):** GPX4 is mentioned in 65 of the 250 abstracts (the most of any gene), is labelled *core*, has 3 *direct* sentences and has 8 interactions. That gives 0.40 + 0.40 + 0.15 + 0.036 = **0.99**. TFRC is in 13 abstracts (literature 0.26), *core* (0.40), and has 2 direct and 1 background sentence (0.105) and 6 interactions (0.027), for **0.79**.
+
 The network term is deliberately small, so highly connected "hub" genes such as TP53 or AKT1 cannot outrank genes the literature is actually about.
 
 ### How the weights were chosen

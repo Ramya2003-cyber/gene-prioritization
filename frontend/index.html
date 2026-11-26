@@ -125,7 +125,12 @@
         <div class="panel">
           <h3>Score</h3>
           <p class="mono small">score = 0.40·literature + 0.40·LLM relevance + 0.15·LLM evidence + 0.05·network</p>
-          <p class="small">Literature is log paper breadth scaled within the topic. Relevance is core 1 / supporting 0.6 / peripheral 0.25 / unrelated 0. Evidence is the mean sentence label (direct 1 / indirect 0.5 / background 0.1). The network term is kept small on purpose so highly connected "hub" genes cannot outrank genes the literature is actually about.</p>
+          <ul class="small">
+            <li><b>Literature:</b> how many of the topic's 250 abstracts mention the gene (log scale, plus a little weight for total mentions), relative to the most-mentioned gene.</li>
+            <li><b>LLM relevance:</b> the LLM's judgement of the gene's role: core 1, supporting 0.6, peripheral 0.25, unrelated 0.</li>
+            <li><b>LLM evidence:</b> the average label of up to 3 evidence sentences: direct finding 1, indirect 0.5, background 0.1.</li>
+            <li><b>Network:</b> high-confidence STRING interactions with the other candidates, relative to the most connected gene. It is kept small on purpose, so "hub" genes cannot outrank genes the literature is actually about.</li>
+          </ul>
         </div>
         <div class="panel">
           <h3>Guardrails &amp; limits</h3>
