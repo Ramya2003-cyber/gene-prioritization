@@ -42,6 +42,20 @@ flowchart LR
 
    The network term is deliberately small, so highly connected "hub" genes (TP53, AKT1…) cannot outrank genes the literature is actually about.
 
+### How the weights were chosen
+The weights are set by hand. I tested them against **learned weights from a pairwise learning-to-rank model**, trained on 251 KEGG pathway cases and evaluated with 5-fold cross-validation by pathway (details in [`training/`](training/README.md)):
+
+| Ranking (held-out pathways) | Gene precision@10 | Pathway R@1 | MRR |
+|---|---:|---:|---:|
+| Paper count only | 0.580 | 0.725 | 0.799 |
+| **Hand-set weights (used)** | **0.631** | 0.777 | 0.836 |
+| Learned: literature + LLM evidence | 0.606 | 0.793 | 0.841 |
+| Learned: + network signals | 0.650 | 0.701 | 0.778 |
+
+- **Network signals:** the learner gave them a large weight, which selected slightly more pathway members but cut pathway recovery by 7.6 points (significant).
+- **Without network signals:** the learned model tied the hand-set weights on pathway recovery but was worse on precision.
+- **Result:** the hand-set weights were kept. The LLM relevance term has no saved equivalent, so it is not covered by this test.
+
 ### LLM guardrails
 - The model judges **only the sentences it is given**, with temperature 0 and JSON output.
 - **Every item is validated.** Unknown genes, made-up passage IDs and invalid labels are dropped and listed in the run notes.

@@ -1,0 +1,26 @@
+{
+  "source": "scripts/train_weights.py",
+  "features": [
+    "log_paper_count",
+    "direct_finding_ratio",
+    "background_noise_ratio",
+    "evidence_consensus_score",
+    "string_degree_all",
+    "string_supported_neighbors"
+  ],
+  "weights": {
+    "log_paper_count": 0.5802,
+    "direct_finding_ratio": 0.2448,
+    "background_noise_ratio": -0.1312,
+    "evidence_consensus_score": 0.031,
+    "string_degree_all": 0.5257,
+    "string_supported_neighbors": 0.3375
+  },
+  "fit": {
+    "loss": 0.4572754716176029,
+    "iterations": 20,
+    "converged": true,
+    "training_queries": 229,
+    "pairs": 57257
+  }
+}
