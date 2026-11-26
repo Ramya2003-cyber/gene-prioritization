@@ -170,6 +170,15 @@ function show(result) {
 
   const max = Math.max(...result.genes.map((g) => g.score), 1e-9);
   $("#gene-list").innerHTML = result.genes.map((g) => geneCard(g, max)).join("");
+  const others = result.other_candidates || [];
+  $("#others").hidden = !others.length;
+  $("#others summary").textContent = `Other reviewed candidates (${others.length})`;
+  $("#others tbody").innerHTML = others.map((g) => `<tr>
+      <td class="mono">${g.rank}</td>
+      <td><a class="mono" href="${esc(g.ncbi_url)}" target="_blank" rel="noopener" title="${esc(g.name)}">${esc(g.symbol)}</a></td>
+      <td><span class="rel-tag ${g.relevance || "none"}">${g.relevance || "not reviewed"}</span></td>
+      <td class="mono">${g.papers}</td><td class="mono">${g.score.toFixed(3)}</td>
+      <td>${linkPmids(esc(g.rationale || ""))}</td></tr>`).join("");
   drawNetwork(result);
   $("#results").hidden = false;
   $("#results").scrollIntoView({ behavior: "smooth", block: "start" });

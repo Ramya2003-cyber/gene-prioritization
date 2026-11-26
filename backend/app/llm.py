@@ -86,6 +86,15 @@ def parse_json(text: str) -> dict:
         raise
 
 
+def tidy(text: str) -> str:
+    """Remove punctuation left behind when an invalid citation is dropped."""
+    text = re.sub(r"(,\s*)+(?=[.;:)]|$)", "", text)   # trailing ", " before . ; ) or end
+    text = re.sub(r",(\s*,)+", ",", text)             # ", ," -> ","
+    text = re.sub(r"\(\s*\)", "", text)               # empty brackets
+    text = re.sub(r"\s+([.,;:])", r"\1", text)        # space before punctuation
+    return " ".join(text.split()).strip()
+
+
 def validate(batch: list[dict], payload: dict) -> tuple[dict[str, dict], list[str]]:
     """Keep only well-formed assessments of genes/passages that were actually sent."""
     issues: list[str] = []
@@ -116,7 +125,7 @@ def validate(batch: list[dict], payload: dict) -> tuple[dict[str, dict], list[st
         def cite(m: re.Match) -> str:
             p = sent[symbol].get(m.group(1))
             return f"[PMID {p['pmid']}]" if p else ""
-        rationale = re.sub(r"\[(P\d+)\]", cite, rationale).strip()
+        rationale = tidy(re.sub(r"\[(P\d+)\]", cite, rationale))
         accepted[symbol] = {"relevance": relevance, "rationale": rationale, "evidence": evidence}
     missing = [s for s in sent if s not in accepted]
     if missing:
@@ -167,7 +176,9 @@ def review(client: httpx.Client, config: LLMConfig, topic: str, genes: list[dict
                 batch, out = future.result()
             except Exception as exc:  # one failed batch must not sink the search
                 failed += 1
-                issues.append(f"An LLM review batch failed ({type(exc).__name__}); those genes use literature signals only.")
+                status = getattr(getattr(exc, "response", None), "status_code", None)
+                reason = "rate limit reached" if status == 429 else f"HTTP {status}" if status else type(exc).__name__
+                issues.append(f"An LLM review batch failed ({reason}); those genes use literature signals only.")
                 continue
             accepted, batch_issues = validate(batch, out["payload"])
             assessments.update(accepted)

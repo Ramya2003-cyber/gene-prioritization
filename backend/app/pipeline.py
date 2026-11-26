@@ -108,6 +108,11 @@ def run(topic: str, k: int, progress=lambda stage, message: None, *, client: htt
             },
             "weights": ranking.WEIGHTS,
             "genes": top,
+            # Shortlisted genes that did not make the top k, so users can see what was demoted and why.
+            "other_candidates": [
+                {key: g[key] for key in ("rank", "symbol", "name", "score", "papers", "relevance", "rationale", "ncbi_url")}
+                for g in ranked[k:]
+            ],
             "network": [e for e in edges if e[0] in top_symbols and e[1] in top_symbols],
             "warnings": warnings,
         }

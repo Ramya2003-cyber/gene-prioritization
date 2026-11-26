@@ -1,20 +1,20 @@
 {
  "topic": "ferroptosis",
  "k": 10,
- "created_at": "2026-11-26T09:02:11+00:00",
- "mode": "literature-only",
- "model": null,
+ "created_at": "2026-11-26T11:00:39+00:00",
+ "mode": "llm",
+ "model": "gemini-3.1-flash-lite",
  "stats": {
   "abstracts_matched": 30741,
   "abstracts_used": 250,
   "abstracts_annotated": 228,
-  "human_genes_found": 213,
+  "human_genes_found": 216,
   "candidates_ranked": 20,
-  "llm_reviewed": 0,
-  "llm_calls": 0,
-  "llm_tokens": 0,
+  "llm_reviewed": 20,
+  "llm_calls": 2,
+  "llm_tokens": 6848,
   "network_edges": 56,
-  "elapsed_s": 39.8
+  "elapsed_s": 41.8
  },
  "weights": {
   "literature": 0.4,
@@ -28,8 +28,8 @@
    "name": "glutathione peroxidase 4",
    "ncbi_id": "2879",
    "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/2879",
-   "papers": 64,
-   "mentions": 155,
+   "papers": 65,
+   "mentions": 156,
    "degree": 8,
    "partners": [
     "ACSL4",
@@ -41,33 +41,33 @@
     "SLC7A11",
     "TFRC"
    ],
-   "score": 0.4364,
+   "score": 0.9864,
    "score_parts": {
     "literature": 0.4,
-    "llm_relevance": 0.0,
-    "llm_evidence": 0.0,
+    "llm_relevance": 0.4,
+    "llm_evidence": 0.15,
     "network": 0.0364
    },
-   "relevance": null,
-   "rationale": "",
+   "relevance": "core",
+   "rationale": "GPX4 is a central regulator of ferroptosis, acting as a lipid peroxidase to prevent cell death [PMID 42834219], [PMID 42838049], [PMID 42874009].",
    "evidence": [
     {
      "pmid": "42834219",
      "text": "GPX4 (glutathione peroxidase) reduces the formation of lipid peroxides and thus enhances tumor cell resistance to the tumoricidal actions of radiation, anticancer drugs, and immune checkpoint inhibitors (ICIs).",
      "mention": "GPX4",
-     "label": null
+     "label": "direct"
     },
     {
      "pmid": "42838049",
      "text": "It is well established that glutathione (GSH) is mainly utilized by glutathione peroxidase 4 (GPX4) to diminish peroxidized phospholipids and defend against ferroptosis.",
      "mention": "glutathione peroxidase 4",
-     "label": null
+     "label": "direct"
     },
     {
      "pmid": "42874009",
      "text": "We demonstrate that PUFA treatment alone is sufficient to induce ferroptosis in these cell lines that are also vulnerable to GPX4 inhibition.",
      "mention": "GPX4",
-     "label": null
+     "label": "direct"
     },
     {
      "pmid": "42896032",
@@ -95,8 +95,8 @@
    "name": "NFE2 like bZIP transcription factor 2",
    "ncbi_id": "4780",
    "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/4780",
-   "papers": 27,
-   "mentions": 70,
+   "papers": 26,
+   "mentions": 69,
    "degree": 11,
    "partners": [
     "AKT1",
@@ -111,33 +111,33 @@
     "SLC7A11",
     "TP53"
    ],
-   "score": 0.3736,
+   "score": 0.9196,
    "score_parts": {
-    "literature": 0.3236,
-    "llm_relevance": 0.0,
-    "llm_evidence": 0.0,
+    "literature": 0.3196,
+    "llm_relevance": 0.4,
+    "llm_evidence": 0.15,
     "network": 0.05
    },
-   "relevance": null,
-   "rationale": "",
+   "relevance": "core",
+   "rationale": "NRF2 is a master transcriptional regulator of antioxidant defense systems, including GPX4 and SLC7A11, that suppress ferroptosis [PMID 42910753], [PMID 42949631].",
    "evidence": [
     {
      "pmid": "42840475",
      "text": "We summarize clinically used drugs and emerging strategies targeting ferroptosis, including iron chelators, radical scavengers, NRF2 activators, natural antioxidants, and nanomedicine.",
      "mention": "NRF2",
-     "label": null
+     "label": "direct"
     },
     {
      "pmid": "42910753",
      "text": "AFF3 regulates ferroptosis and malignant progression in bladder cancer cells via the NRF2/GPX4 signaling axis.",
      "mention": "NRF2",
-     "label": null
+     "label": "direct"
     },
     {
      "pmid": "42949631",
      "text": "ALDH2 Suppresses Ferroptosis and Promotes Bortezomib Resistance in Multiple Myeloma Through the KEAP1-NRF2 Feedback Loop.",
      "mention": "NRF2",
-     "label": null
+     "label": "direct"
     },
     {
      "pmid": "42998807",
@@ -166,7 +166,7 @@
    "ncbi_id": "23657",
    "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/23657",
    "papers": 30,
-   "mentions": 70,
+   "mentions": 69,
    "degree": 6,
    "partners": [
     "ACSL4",
@@ -176,33 +176,33 @@
     "NFE2L2",
     "TP53"
    ],
-   "score": 0.3583,
+   "score": 0.862,
    "score_parts": {
-    "literature": 0.331,
-    "llm_relevance": 0.0,
-    "llm_evidence": 0.0,
+    "literature": 0.3298,
+    "llm_relevance": 0.4,
+    "llm_evidence": 0.105,
     "network": 0.0273
    },
-   "relevance": null,
-   "rationale": "",
+   "relevance": "core",
+   "rationale": "SLC7A11 is a key component of the cystine-glutamate antiporter system, essential for maintaining glutathione levels and preventing ferroptosis [PMID 42834219], [PMID 42910753].",
    "evidence": [
     {
      "pmid": "42834219",
      "text": "CD8+ T cells/macrophages/TILs/NK cells and other immunocytes downregulate the expression of SLC3A2 and SLC7A11, two subunits of the glutamate-cystine antiporter system x c -  , and impair the uptake of cystine by tumor cells, because of which accumulation of toxic lipid peroxides occurs in the tumor cells, leading to their apoptosis/ferroptosis/necrosis.",
      "mention": "SLC7A11",
-     "label": null
+     "label": "direct"
     },
     {
      "pmid": "42910753",
      "text": "downregulated GPX4 and SLC7A11 expression; and increased sensitivity to ferroptosis.",
      "mention": "SLC7A11",
-     "label": null
+     "label": "direct"
     },
     {
      "pmid": "42963229",
      "text": "However, the effects of FTO/MKL-1/SLC7A11 on ferroptosis in breast cancer cells (MDA-MB-231 and MDA-MB-468 cell line) have not been reported so far.",
      "mention": "SLC7A11",
-     "label": null
+     "label": "background"
     },
     {
      "pmid": "42985786",
@@ -239,33 +239,33 @@
     "SLC7A11",
     "TFRC"
    ],
-   "score": 0.3125,
+   "score": 0.8166,
    "score_parts": {
-    "literature": 0.2943,
-    "llm_relevance": 0.0,
-    "llm_evidence": 0.0,
+    "literature": 0.2934,
+    "llm_relevance": 0.4,
+    "llm_evidence": 0.105,
     "network": 0.0182
    },
-   "relevance": null,
-   "rationale": "",
+   "relevance": "core",
+   "rationale": "ACSL4 is a critical pro-ferroptotic enzyme that promotes lipid peroxidation [PMID 42834219], [PMID 42965146].",
    "evidence": [
     {
      "pmid": "42834219",
      "text": "Interferon-gamma (IFN-gamma) is secreted by CD8+ T cells, and AA induces ferroptosis of tumor cells in an ACSL4 (the protein encoded by this gene is an isozyme of the long-chain fatty-acid-coenzyme A ligase family)-dependent lipid peroxidation process.",
      "mention": "ACSL4",
-     "label": null
+     "label": "direct"
     },
     {
      "pmid": "42949000",
      "text": "In addition, we identified iron deposits through Perls Prussian blue as well as the presence of proteins such as ferritin, transferrin receptor 1 (CD71), glutathione peroxidase-4 (GPX4) and acyl-CoA synthetase long-chain family member 4 (ACSL4).",
      "mention": "acyl-CoA synthetase long-chain family member 4",
-     "label": null
+     "label": "background"
     },
     {
      "pmid": "42965146",
      "text": "These coordinated effects established a positive feedback loop between immunogenic ferroptosis and antitumor immunity through interferon-gamma-ACSL4 signaling.",
      "mention": "ACSL4",
-     "label": null
+     "label": "direct"
     },
     {
      "pmid": "43027756",
@@ -289,129 +289,6 @@
    "rank": 4
   },
   {
-   "symbol": "TFRC",
-   "name": "transferrin receptor",
-   "ncbi_id": "7037",
-   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/7037",
-   "papers": 13,
-   "mentions": 32,
-   "degree": 6,
-   "partners": [
-    "ACSL4",
-    "FTH1",
-    "GPX4",
-    "HIF1A",
-    "TF",
-    "TP53"
-   ],
-   "score": 0.2857,
-   "score_parts": {
-    "literature": 0.2585,
-    "llm_relevance": 0.0,
-    "llm_evidence": 0.0,
-    "network": 0.0273
-   },
-   "relevance": null,
-   "rationale": "",
-   "evidence": [
-    {
-     "pmid": "42863533",
-     "text": "TFRC-associated ferroptosis in synovial macrophages promotes inflammatory and fibrotic remodeling in osteoarthritis.",
-     "mention": "TFRC",
-     "label": null
-    },
-    {
-     "pmid": "42907496",
-     "text": "The rise of reducing reagent-resistant TfR1 dimer marks ferroptosis.",
-     "mention": "TfR1",
-     "label": null
-    },
-    {
-     "pmid": "42949000",
-     "text": "In addition, we identified iron deposits through Perls Prussian blue as well as the presence of proteins such as ferritin, transferrin receptor 1 (CD71), glutathione peroxidase-4 (GPX4) and acyl-CoA synthetase long-chain family member 4 (ACSL4).",
-     "mention": "CD71",
-     "label": null
-    },
-    {
-     "pmid": "43027756",
-     "text": "We first outline core ferroptosis biology and GBM-specific modifiers of ferroptotic susceptibility, including TFR1-mediated iron import, grade-dependent glutathione peroxidase 4 (GPX4) expression, acyl-coenzyme A synthetase long-chain family member 4 (ACSL4) levels, transsulfuration, NRF2, p53, non-coding RNAs, and the relative resistance of mesenchymal tumors and glioma stem cells.",
-     "mention": "TFR1",
-     "label": null
-    },
-    {
-     "pmid": "43032170",
-     "text": "The expression levels of stearoyl-CoA desaturase, transferrin receptor (TFRC) and carbonic anhydrase 9 were experimentally validated by PCR, which was consistent with the present bioinformatics analysis.",
-     "mention": "transferrin receptor",
-     "label": null
-    },
-    {
-     "pmid": "42842069",
-     "text": "This distinct mode of cell death is orchestrated through multiple molecular pathways, including the system Xc-/glutathione (GSH) /glutathione peroxidase 4 (GPX4) axis, iron metabolism dysregulation via transferrin receptor 1 (TFR1) and ferritin, and lipid remodeling through acyl-CoA synthetase long-chain family member 4 (ACSL4)-mediated incorporation of polyunsaturated fatty acids into membrane phospholipids.",
-     "mention": "transferrin receptor 1",
-     "label": null
-    }
-   ],
-   "rank": 5
-  },
-  {
-   "symbol": "ATL1",
-   "name": "atlastin GTPase 1",
-   "ncbi_id": "51062",
-   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/51062",
-   "papers": 13,
-   "mentions": 37,
-   "degree": 0,
-   "partners": [],
-   "score": 0.2611,
-   "score_parts": {
-    "literature": 0.2611,
-    "llm_relevance": 0.0,
-    "llm_evidence": 0.0,
-    "network": 0.0
-   },
-   "relevance": null,
-   "rationale": "",
-   "evidence": [
-    {
-     "pmid": "42838049",
-     "text": "A non-canonical function of glutathione to suppress ferroptosis via FSP1.",
-     "mention": "FSP1",
-     "label": null
-    },
-    {
-     "pmid": "43012285",
-     "text": "Anti-ferroptotic regulators such as SLC7A11, GPX4, FSP1, and NRF2 can increase cellular tolerance to oxidative stress and reduce susceptibility to ferroptotic cell death.",
-     "mention": "FSP1",
-     "label": null
-    },
-    {
-     "pmid": "43013282",
-     "text": "The canonical KEAP1-NRF2 pathway regulates ferroptosis mainly through antioxidant defense systems, including the solute carrier family 7 member 11 (SLC7A11)-glutathione peroxidase 4 (GPX4) and the ferroptosis suppressor protein 1 (FSP1)-coenzyme Q10 (CoQ10) pathways.",
-     "mention": "ferroptosis suppressor protein 1",
-     "label": null
-    },
-    {
-     "pmid": "43052013",
-     "text": "Concurrently, ER-N significantly triggers ferroptosis through light-mediated downregulation of multiple ferroptosis-suppressing proteins, including glutathione peroxidase 4 (GPX4), thioredoxin (TRX), solute carrier 7A11 (SLC7A11), and ferroptosis suppressor protein 1 (FSP1).",
-     "mention": "ferroptosis suppressor protein 1",
-     "label": null
-    },
-    {
-     "pmid": "43063736",
-     "text": "Targeting FSP1 to induce ferroptosis: advances in small-molecule inhibitors, degraders and their structure-activity relationships.",
-     "mention": "FSP1",
-     "label": null
-    },
-    {
-     "pmid": "42629424",
-     "text": "Glutathione peroxidase 4 (GPX4) and ferroptosis-suppressor protein 1 (FSP1) are now well established as master regulators, but various additional systems dictate ferroptosis sensitivity.",
-     "mention": "ferroptosis-suppressor protein 1",
-     "label": null
-    }
-   ],
-   "rank": 6
-  },
-  {
    "symbol": "FTH1",
    "name": "ferritin heavy chain 1",
    "ncbi_id": "2495",
@@ -427,33 +304,33 @@
     "SLC7A11",
     "TFRC"
    ],
-   "score": 0.2543,
+   "score": 0.8036,
    "score_parts": {
-    "literature": 0.2271,
-    "llm_relevance": 0.0,
-    "llm_evidence": 0.0,
+    "literature": 0.2264,
+    "llm_relevance": 0.4,
+    "llm_evidence": 0.15,
     "network": 0.0273
    },
-   "relevance": null,
-   "rationale": "",
+   "relevance": "core",
+   "rationale": "FTH1 (ferritin) regulates intracellular iron availability, and its degradation (ferritinophagy) promotes ferroptosis [PMID 42743078], [PMID 42867392], [PMID 42905767].",
    "evidence": [
     {
      "pmid": "42743078",
      "text": "Inulin-fermented butyrate activates the HIF-1alpha-ferritin heavy chain (FTH)/mitochondrial ferritin (FTMT) axis, alleviating cardiac ferroptosis and DCM, and stabilizes HIF-1alpha by promoting K190 Kbu modification and inhibiting ubiquitin-dependent degradation.",
      "mention": "ferritin heavy chain",
-     "label": null
+     "label": "direct"
     },
     {
      "pmid": "42867392",
      "text": "TRIM25 promotes neuronal ferroptosis in ischemic stroke by suppressing YBX1/H3K4me1/FTH1 axis.",
      "mention": "FTH1",
-     "label": null
+     "label": "direct"
     },
     {
      "pmid": "42905767",
      "text": "Stabilized NCOA4 promotes ferritinophagy, leading to degradation of ferritin heavy chain (FTH) and ultimately inducing ferroptosis.",
      "mention": "ferritin heavy chain",
-     "label": null
+     "label": "direct"
     },
     {
      "pmid": "42985786",
@@ -474,76 +351,7 @@
      "label": null
     }
    ],
-   "rank": 7
-  },
-  {
-   "symbol": "AKT1",
-   "name": "AKT serine/threonine kinase 1",
-   "ncbi_id": "207",
-   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/207",
-   "papers": 7,
-   "mentions": 16,
-   "degree": 10,
-   "partners": [
-    "ATF4",
-    "CD8A",
-    "HIF1A",
-    "HMOX1",
-    "KEAP1",
-    "NFE2L2",
-    "NFKB1",
-    "PIK3CB",
-    "TP53",
-    "YAP1"
-   ],
-   "score": 0.2506,
-   "score_parts": {
-    "literature": 0.2051,
-    "llm_relevance": 0.0,
-    "llm_evidence": 0.0,
-    "network": 0.0455
-   },
-   "relevance": null,
-   "rationale": "",
-   "evidence": [
-    {
-     "pmid": "42985786",
-     "text": "Mechanistically, calycosin promoted Beclin1-dependent autophagy by activating the AMPK/ULK1 pathway and inhibiting the PI3K/AKT/mTOR pathway; furthermore, it promoted lysosomal biogenesis via the ERK/TFEB pathway, ultimately enhancing ferroptosis.",
-     "mention": "AKT",
-     "label": null
-    },
-    {
-     "pmid": "43002894",
-     "text": "Furthermore, combined treatment modulated FGFR4-associated ERK/AKT signaling and disrupted redox and iron homeostasis.",
-     "mention": "AKT",
-     "label": null
-    },
-    {
-     "pmid": "43036277",
-     "text": "Besides, GOLPH3 depletion suppressed the AKT/GSK3beta/NRF2 pathway, thereby enhancing ferroptosis.",
-     "mention": "AKT",
-     "label": null
-    },
-    {
-     "pmid": "43046590",
-     "text": "Hydrogen Attenuates Erastin-Induced Ferroptosis in Adipose-Derived Stem Cells in Association with AKT/HO-1 Signaling.",
-     "mention": "AKT",
-     "label": null
-    },
-    {
-     "pmid": "42926026",
-     "text": "Cystathionine beta-synthase alleviates intervertebral disc degeneration by inhibiting ferroptosis of nucleus pulposus cells via the PI3K-AKT Axis.",
-     "mention": "AKT",
-     "label": null
-    },
-    {
-     "pmid": "42789330",
-     "text": "Using high-fat diet obese mice, primary human granulosa cells from obese infertile patients, and KGN cell lines, we identified the nuclear receptor NR4A1 as a key mediator of obesity-induced ferroptosis downstream of PI3K/AKT signaling.",
-     "mention": "AKT",
-     "label": null
-    }
-   ],
-   "rank": 8
+   "rank": 5
   },
   {
    "symbol": "KEAP1",
@@ -562,33 +370,33 @@
     "NFE2L2",
     "TP53"
    ],
-   "score": 0.2425,
+   "score": 0.7918,
    "score_parts": {
-    "literature": 0.2107,
-    "llm_relevance": 0.0,
-    "llm_evidence": 0.0,
+    "literature": 0.21,
+    "llm_relevance": 0.4,
+    "llm_evidence": 0.15,
     "network": 0.0318
    },
-   "relevance": null,
-   "rationale": "",
+   "relevance": "core",
+   "rationale": "KEAP1 is the primary negative regulator of NRF2, thereby controlling the antioxidant response that suppresses ferroptosis [PMID 42910753], [PMID 42949631], [PMID 43013282].",
    "evidence": [
     {
      "pmid": "42910753",
      "text": "Mechanistically, AFF3 upregulated KEAP1 and inhibited NRF2 nuclear translocation, thereby reducing GPX4 expression; conversely, TBHQ partially reversed these molecular and functional changes.",
      "mention": "KEAP1",
-     "label": null
+     "label": "direct"
     },
     {
      "pmid": "42949631",
      "text": "ALDH2 Suppresses Ferroptosis and Promotes Bortezomib Resistance in Multiple Myeloma Through the KEAP1-NRF2 Feedback Loop.",
      "mention": "KEAP1",
-     "label": null
+     "label": "direct"
     },
     {
      "pmid": "43013282",
      "text": "KEAP1-mediated regulation of ferroptosis: from canonical and non-canonical mechanisms to therapeutic targeting.",
      "mention": "KEAP1",
-     "label": null
+     "label": "direct"
     },
     {
      "pmid": "42759111",
@@ -609,75 +417,316 @@
      "label": null
     }
    ],
-   "rank": 9
+   "rank": 6
   },
   {
-   "symbol": "TP53",
-   "name": "tumor protein p53",
-   "ncbi_id": "7157",
-   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/7157",
-   "papers": 7,
-   "mentions": 12,
-   "degree": 9,
+   "symbol": "TFRC",
+   "name": "transferrin receptor",
+   "ncbi_id": "7037",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/7037",
+   "papers": 13,
+   "mentions": 32,
+   "degree": 6,
    "partners": [
-    "AKT1",
-    "CD8A",
+    "ACSL4",
+    "FTH1",
+    "GPX4",
     "HIF1A",
-    "KEAP1",
-    "NFE2L2",
-    "NFKB1",
-    "PIK3CB",
-    "SLC7A11",
-    "TFRC"
+    "TF",
+    "TP53"
    ],
-   "score": 0.2411,
+   "score": 0.7899,
    "score_parts": {
-    "literature": 0.2002,
-    "llm_relevance": 0.0,
-    "llm_evidence": 0.0,
-    "network": 0.0409
+    "literature": 0.2577,
+    "llm_relevance": 0.4,
+    "llm_evidence": 0.105,
+    "network": 0.0273
    },
-   "relevance": null,
-   "rationale": "",
+   "relevance": "core",
+   "rationale": "TFRC (TfR1) is a central mediator of iron import, which is required for the execution of ferroptosis [PMID 42863533], [PMID 42907496], [PMID 42949000].",
    "evidence": [
     {
      "pmid": "42863533",
-     "text": "Using an ensemble machine learning framework, we identified and validated key ferroptosis-related genes, including TFRC, GCLC, GSS, and TP53.",
-     "mention": "TP53",
-     "label": null
+     "text": "TFRC-associated ferroptosis in synovial macrophages promotes inflammatory and fibrotic remodeling in osteoarthritis.",
+     "mention": "TFRC",
+     "label": "direct"
+    },
+    {
+     "pmid": "42907496",
+     "text": "The rise of reducing reagent-resistant TfR1 dimer marks ferroptosis.",
+     "mention": "TfR1",
+     "label": "direct"
+    },
+    {
+     "pmid": "42949000",
+     "text": "In addition, we identified iron deposits through Perls Prussian blue as well as the presence of proteins such as ferritin, transferrin receptor 1 (CD71), glutathione peroxidase-4 (GPX4) and acyl-CoA synthetase long-chain family member 4 (ACSL4).",
+     "mention": "CD71",
+     "label": "background"
     },
     {
      "pmid": "43027756",
      "text": "We first outline core ferroptosis biology and GBM-specific modifiers of ferroptotic susceptibility, including TFR1-mediated iron import, grade-dependent glutathione peroxidase 4 (GPX4) expression, acyl-coenzyme A synthetase long-chain family member 4 (ACSL4) levels, transsulfuration, NRF2, p53, non-coding RNAs, and the relative resistance of mesenchymal tumors and glioma stem cells.",
-     "mention": "p53",
+     "mention": "TFR1",
      "label": null
     },
     {
-     "pmid": "42727656",
-     "text": "This review provides a comprehensive analysis of the transcriptional regulatory networks (Nrf2, YY1, p53, HIF-1alpha) and epigenetic modifications (DNA methylation, histone modifications, non-coding RNAs, chromatin remodeling) that orchestrate ferroptosis programs in drug resistance.",
-     "mention": "p53",
+     "pmid": "43032170",
+     "text": "The expression levels of stearoyl-CoA desaturase, transferrin receptor (TFRC) and carbonic anhydrase 9 were experimentally validated by PCR, which was consistent with the present bioinformatics analysis.",
+     "mention": "transferrin receptor",
      "label": null
     },
     {
-     "pmid": "43013616",
-     "text": "The p16 isoform of CDKN2A inhibits ferroptosis to promote the progression of papillary thyroid carcinoma by influencing the p53/SLC7A11/GPX4 pathway.",
-     "mention": "p53",
+     "pmid": "42842069",
+     "text": "This distinct mode of cell death is orchestrated through multiple molecular pathways, including the system Xc-/glutathione (GSH) /glutathione peroxidase 4 (GPX4) axis, iron metabolism dysregulation via transferrin receptor 1 (TFR1) and ferritin, and lipid remodeling through acyl-CoA synthetase long-chain family member 4 (ACSL4)-mediated incorporation of polyunsaturated fatty acids into membrane phospholipids.",
+     "mention": "transferrin receptor 1",
      "label": null
+    }
+   ],
+   "rank": 7
+  },
+  {
+   "symbol": "ATF4",
+   "name": "activating transcription factor 4",
+   "ncbi_id": "468",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/468",
+   "papers": 4,
+   "mentions": 13,
+   "degree": 5,
+   "partners": [
+    "AKT1",
+    "HMOX1",
+    "KEAP1",
+    "NFE2L2",
+    "SLC7A11"
+   ],
+   "score": 0.7392,
+   "score_parts": {
+    "literature": 0.1664,
+    "llm_relevance": 0.4,
+    "llm_evidence": 0.15,
+    "network": 0.0227
+   },
+   "relevance": "core",
+   "rationale": "ATF4 regulates SLC7A11 and sulfur transfer pathways, directly modulating ferroptosis resistance [PMID 42906555], [PMID 43033438], [PMID 42842069].",
+   "evidence": [
+    {
+     "pmid": "42906555",
+     "text": "Sensitization to GPX4 inhibition requires protein synthesis but not the apoptosis execution machinery and is opposed by the activating transcription factor 4 (ATF4) stress response pathway.",
+     "mention": "activating transcription factor 4",
+     "label": "direct"
+    },
+    {
+     "pmid": "43033438",
+     "text": "Specifically, diminished ubiquitination increases the protein levels of activating transcription factor 4 (ATF4) and elevates solute carrier family 7 member 11 (SLC7A11) expression, thereby inhibiting ferroptosis.",
+     "mention": "activating transcription factor 4",
+     "label": "direct"
+    },
+    {
+     "pmid": "42842069",
+     "text": "Mechanistically, cancer-associated fibroblasts activate the TGF-beta/SMAD3/ATF4 signaling axis to upregulate sulfur transfer pathways, secreting cysteine that supports tumor cell GSH synthesis and GPX4 activity, thereby conferring ferroptosis resistance.",
+     "mention": "ATF4",
+     "label": "direct"
+    },
+    {
+     "pmid": "42577482",
+     "text": "Elevated Expression of Selenoprotein Synthesis Enzyme SEPHS2 Driven by ATF4 Promotes the Resistance to Ferroptosis in Prostate Cancer.",
+     "mention": "ATF4",
+     "label": null
+    }
+   ],
+   "rank": 8
+  },
+  {
+   "symbol": "TF",
+   "name": "transferrin",
+   "ncbi_id": "7018",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/7018",
+   "papers": 3,
+   "mentions": 16,
+   "degree": 1,
+   "partners": [
+    "TFRC"
+   ],
+   "score": 0.7082,
+   "score_parts": {
+    "literature": 0.1536,
+    "llm_relevance": 0.4,
+    "llm_evidence": 0.15,
+    "network": 0.0045
+   },
+   "relevance": "core",
+   "rationale": "Transferrin is a critical component of iron metabolism, which is central to the ferroptotic process [PMID 42829384], [PMID 42898245], [PMID 42991090].",
+   "evidence": [
+    {
+     "pmid": "42829384",
+     "text": "Our analysis revealed a significant reduction in the levels of transferrin (TF), an essential iron-transporting protein.",
+     "mention": "transferrin",
+     "label": "direct"
+    },
+    {
+     "pmid": "42898245",
+     "text": "This review synthesizes the core molecular machinery governing ferroptosis, detailing the critical roles of iron metabolism through systems like transferrin/transferrin receptor 1 and ferritinophagy, the cystine/glutamate antiporter system (Xc-)/glutathione/GPX4 axis, and the recently discovered FSP1/CoQ10 pathway.",
+     "mention": "transferrin",
+     "label": "direct"
+    },
+    {
+     "pmid": "42991090",
+     "text": "Identification of SLC7A5 and transferrin as key ferroptosis modulators in triple-negative breast cancer.",
+     "mention": "transferrin",
+     "label": "direct"
+    }
+   ],
+   "rank": 9
+  },
+  {
+   "symbol": "DHODH",
+   "name": "dihydroorotate dehydrogenase (quinone)",
+   "ncbi_id": "1723",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/1723",
+   "papers": 4,
+   "mentions": 5,
+   "degree": 1,
+   "partners": [
+    "GPX4"
+   ],
+   "score": 0.7054,
+   "score_parts": {
+    "literature": 0.1509,
+    "llm_relevance": 0.4,
+    "llm_evidence": 0.15,
+    "network": 0.0045
+   },
+   "relevance": "core",
+   "rationale": "DHODH is a key component of the mitochondrial defense system that suppresses ferroptosis [PMID 42789241], [PMID 42891769], [PMID 43047601].",
+   "evidence": [
+    {
+     "pmid": "42789241",
+     "text": "…lysophosphatidylcholine acyltransferase 3 (LPCAT3)-dependent lipid remodeling, and the glutathione peroxidase 4 (GPX4)-glutathione, ferroptosis suppressor protein 1 (FSP1)-coenzyme Q10, mitochondrial dihydroorotate dehydrogenase (DHODH), and GTP cyclohydrolase 1 (GCH1)-tetrahydrobiopterin defense systems.…",
+     "mention": "dihydroorotate dehydrogenase",
+     "label": "direct"
+    },
+    {
+     "pmid": "42891769",
+     "text": "Dysregulation of iron metabolism, lipid peroxidation, amino acid metabolism, and antioxidant defence systems, including the System Xc--GSH-GPX4, FSP1-CoQ10, GCH1-BH4, and DHODH pathways, collectively determines cellular susceptibility to ferroptosis.",
+     "mention": "DHODH",
+     "label": "direct"
     },
     {
      "pmid": "43047601",
-     "text": "The review details how oncogenic drivers and tumor suppressors, notably NRF2, p53, and KRAS, rewire these pathways to modulate ferroptosis sensitivity.",
-     "mention": "p53",
-     "label": null
+     "text": "We examine the core machinery governing ferroptosis, including iron handling, phospholipid remodeling, and the glutathione-GPX4, FSP1, and DHODH defense systems.",
+     "mention": "DHODH",
+     "label": "direct"
     },
     {
-     "pmid": "42962907",
-     "text": "This review examines how p53, retinoblastoma protein, cyclin-dependent kinases, and DNA damage checkpoints influence ferroptosis in cancer.",
-     "mention": "p53",
+     "pmid": "42971136",
+     "text": "Other studies implicated NRF2/GPX4, SLC7A11, ACSL4-dependent lipid remodeling, iron regulation, FSP1, DHODH, mitochondrial metabolism, microbiota, and extracellular vesicles.",
+     "mention": "DHODH",
      "label": null
     }
    ],
    "rank": 10
+  }
+ ],
+ "other_candidates": [
+  {
+   "rank": 11,
+   "symbol": "TP53",
+   "name": "tumor protein p53",
+   "score": 0.6305,
+   "papers": 7,
+   "relevance": "supporting",
+   "rationale": "TP53 is identified as a transcriptional regulator that modulates ferroptosis sensitivity in various contexts [PMID 42863533], [PMID 43027756], [PMID 42727656].",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/7157"
+  },
+  {
+   "rank": 12,
+   "symbol": "HIF1A",
+   "name": "hypoxia inducible factor 1 subunit alpha",
+   "score": 0.6056,
+   "papers": 4,
+   "relevance": "supporting",
+   "rationale": "HIF-1alpha is a transcriptional regulator that influences ferroptosis, particularly under hypoxic or metabolic stress conditions [PMID 42743078], [PMID 42901229], [PMID 42727656].",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/3091"
+  },
+  {
+   "rank": 13,
+   "symbol": "PIK3CB",
+   "name": "phosphatidylinositol-4,5-bisphosphate 3-kinase catalytic subunit beta",
+   "score": 0.6029,
+   "papers": 5,
+   "relevance": "supporting",
+   "rationale": "PI3K signaling is linked to the regulation of ferroptosis, often through downstream effects on autophagy or cell survival pathways [PMID 42985786], [PMID 42926026], [PMID 42789330].",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/5291"
+  },
+  {
+   "rank": 14,
+   "symbol": "AKT1",
+   "name": "AKT serine/threonine kinase 1",
+   "score": 0.6006,
+   "papers": 8,
+   "relevance": "supporting",
+   "rationale": "AKT signaling pathways are involved in modulating ferroptosis, often through crosstalk with autophagy or NRF2 pathways [PMID 42985786], [PMID 43002894], [PMID 43036277].",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/207"
+  },
+  {
+   "rank": 15,
+   "symbol": "VDR",
+   "name": "vitamin D receptor",
+   "score": 0.5457,
+   "papers": 3,
+   "relevance": "supporting",
+   "rationale": "VDR activation modulates ferroptosis in various cell types, often by inhibiting inflammatory pathways [PMID 42918372], [PMID 42669384], [PMID 43018770].",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/7421"
+  },
+  {
+   "rank": 16,
+   "symbol": "HMOX1",
+   "name": "heme oxygenase 1",
+   "score": 0.5412,
+   "papers": 4,
+   "relevance": "supporting",
+   "rationale": "HMOX1 (HO-1) is linked to ferroptosis regulation via NRF2 signaling and antioxidant defense mechanisms [PMID 42998807], [PMID 43027756], [PMID 43046590].",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/3162"
+  },
+  {
+   "rank": 17,
+   "symbol": "NFKB1",
+   "name": "nuclear factor kappa B subunit 1",
+   "score": 0.5321,
+   "papers": 4,
+   "relevance": "supporting",
+   "rationale": "NF-kappaB signaling is implicated in ferroptosis regulation, often through inflammatory or oxidative stress pathways [PMID 42880018], [PMID 42992571], [PMID 43018770].",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/4790"
+  },
+  {
+   "rank": 18,
+   "symbol": "YAP1",
+   "name": "Yes1 associated transcriptional regulator",
+   "score": 0.4874,
+   "papers": 4,
+   "relevance": "supporting",
+   "rationale": "YAP1 is involved in regulating iron homeostasis and antioxidant defenses that modify ferroptosis susceptibility [PMID 43020397], [PMID 42889604], [PMID 42964410].",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/10413"
+  },
+  {
+   "rank": 19,
+   "symbol": "CD8A",
+   "name": "CD8 subunit alpha",
+   "score": 0.3441,
+   "papers": 4,
+   "relevance": "peripheral",
+   "rationale": "CD8+ T cells secrete IFN-gamma which sensitizes cells to ferroptosis, but the gene itself is a marker of immune cells [PMID 42834219], [PMID 42789241], [PMID 42898245].",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/925"
+  },
+  {
+   "rank": 20,
+   "symbol": "ATL1",
+   "name": "atlastin GTPase 1",
+   "score": 0.2753,
+   "papers": 13,
+   "relevance": "unrelated",
+   "rationale": "The provided passages do not mention ATL1 in the context of ferroptosis; the text discusses FSP1 and NRF2 [PMID 42838049], [PMID 43012285], [PMID 43013282].",
+   "ncbi_url": "https://www.ncbi.nlm.nih.gov/gene/51062"
   }
  ],
  "network": [
@@ -702,19 +751,24 @@
    0.77
   ],
   [
-   "AKT1",
+   "ATF4",
    "KEAP1",
-   0.723
+   0.711
   ],
   [
-   "AKT1",
+   "ATF4",
    "NFE2L2",
-   0.908
+   0.98
   ],
   [
-   "AKT1",
-   "TP53",
-   0.996
+   "ATF4",
+   "SLC7A11",
+   0.744
+  ],
+  [
+   "DHODH",
+   "GPX4",
+   0.709
   ],
   [
    "FTH1",
@@ -762,33 +816,17 @@
    0.999
   ],
   [
-   "KEAP1",
-   "TP53",
-   0.727
-  ],
-  [
    "NFE2L2",
    "SLC7A11",
    0.903
   ],
   [
-   "NFE2L2",
-   "TP53",
-   0.843
-  ],
-  [
-   "SLC7A11",
-   "TP53",
-   0.739
-  ],
-  [
+   "TF",
    "TFRC",
-   "TP53",
-   0.727
+   0.999
   ]
  ],
  "warnings": [
-  "Used the 250 most relevant of 30,741 matching abstracts; a larger corpus could change lower ranks.",
-  "No LLM API key is configured on the server; ranking uses literature and network signals only."
+  "Used the 250 most relevant of 30,741 matching abstracts; a larger corpus could change lower ranks."
  ]
 }

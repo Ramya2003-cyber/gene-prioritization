@@ -65,6 +65,14 @@ def test_validation_drops_bad_items_but_keeps_good_ones():
     assert any("MADEUP" in i for i in issues) and any("TP53" in i for i in issues)
 
 
+def test_dropped_citations_leave_no_stray_punctuation():
+    batch = llm.build_batches(GENES)[:1][0]
+    payload = {"genes": [{"symbol": "GPX4", "relevance": "core", "evidence": [],
+                          "rationale": "Suppresses ferroptosis [P1], [P7]."}]}
+    accepted, _ = llm.validate(batch, payload)
+    assert accepted["GPX4"]["rationale"] == "Suppresses ferroptosis [PMID 1]."
+
+
 def test_parse_json_tolerates_fences():
     assert llm.parse_json('```json\n{"genes": []}\n```') == {"genes": []}
     assert llm.parse_json('Here you go: {"genes": []} thanks') == {"genes": []}
