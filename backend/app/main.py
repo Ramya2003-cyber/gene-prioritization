@@ -23,7 +23,7 @@ from pydantic import BaseModel, Field
 load_dotenv()
 
 from . import pipeline  # noqa: E402
-from .llm import LLMConfig  # noqa: E402
+from . import llm  # noqa: E402
 
 app = FastAPI(title="Gene Prioritizer API", version="1.0.0")
 app.add_middleware(
@@ -64,8 +64,9 @@ def _check_rate(request: Request) -> None:
 @app.get("/")
 @app.get("/api/health")
 def health() -> dict:
-    config = LLMConfig()
-    return {"status": "ok", "llm_enabled": config.enabled, "model": config.model if config.enabled else None,
+    model = llm.next_model()
+    return {"status": "ok", "llm_enabled": model is not None, "model": model,
+            "claude_searches_remaining": llm.claude_budget.remaining if llm.configs()[0].enabled else 0,
             "max_k": pipeline.MAX_K}
 
 

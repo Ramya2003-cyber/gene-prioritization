@@ -140,6 +140,7 @@ def fake_discovery(monkeypatch):
 def test_pipeline_literature_only_mode(fake_discovery, monkeypatch):
     monkeypatch.delenv("LLM_API_KEY", raising=False)
     monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
     result = pipeline.run("ferroptosis", 2, client=httpx.Client())
     assert result["mode"] == "literature-only"
     assert [g["symbol"] for g in result["genes"]] == ["GPX4", "SLC7A11"]
@@ -150,6 +151,7 @@ def test_pipeline_literature_only_mode(fake_discovery, monkeypatch):
 def test_pipeline_reports_shortfall(fake_discovery, monkeypatch):
     monkeypatch.delenv("LLM_API_KEY", raising=False)
     monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
     result = pipeline.run("ferroptosis", 5, client=httpx.Client())
     assert len(result["genes"]) == 3 and any("Only 3" in w for w in result["warnings"])
 
@@ -157,6 +159,7 @@ def test_pipeline_reports_shortfall(fake_discovery, monkeypatch):
 def test_stream_endpoint_emits_progress_and_result(fake_discovery, monkeypatch):
     monkeypatch.delenv("LLM_API_KEY", raising=False)
     monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
     from app.main import app
 
     client = TestClient(app)
@@ -165,3 +168,67 @@ def test_stream_endpoint_emits_progress_and_result(fake_discovery, monkeypatch):
     bad = client.get("/api/rank/stream", params={"topic": 'bad"topic', "k": 2}).text
     assert "event: failure" in bad
     assert client.get("/api/health").json()["status"] == "ok"
+
+
+def test_anthropic_provider_is_routed_and_usage_mapped(monkeypatch):
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "test")
+    monkeypatch.delenv("CLAUDE_MODEL", raising=False)
+    config = llm.LLMConfig("anthropic")
+    assert config.enabled and config.model == "claude-haiku-5-5"
+    seen = {}
+
+    def fake(cfg, user):
+        seen["user"] = json.loads(user)
+        return {"payload": {"genes": [{"symbol": "GPX4", "relevance": "core", "rationale": "x [P1].",
+                                       "evidence": [{"pid": "P1", "label": "direct"}]}]},
+                "usage": {"prompt_tokens": 100, "completion_tokens": 20}}
+
+    monkeypatch.setattr(llm, "_call_anthropic", fake)
+    out = llm.review(None, config, "ferroptosis", GENES)
+    assert seen["user"]["topic"] == "ferroptosis"
+    assert out["assessments"]["GPX4"]["rationale"] == "x [PMID 1]."
+    assert out["usage"] == {"prompt_tokens": 100, "completion_tokens": 20}
+
+
+def _fake_review(client, cfg, topic, genes):
+    return {"assessments": {g["symbol"]: {"relevance": "core", "rationale": cfg.model, "evidence": []} for g in genes},
+            "issues": [], "calls": 1, "failed_calls": 0, "usage": {"prompt_tokens": 1, "completion_tokens": 1}}
+
+
+def test_claude_budget_then_gemini(fake_discovery, monkeypatch):
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "a")
+    monkeypatch.setenv("LLM_API_KEY", "g")
+    monkeypatch.delenv("CLAUDE_MODEL", raising=False)
+    monkeypatch.delenv("LLM_MODEL", raising=False)
+    monkeypatch.setattr(llm, "claude_budget", llm.ClaudeBudget(2))
+    monkeypatch.setattr(llm, "review", _fake_review)
+    models = [pipeline.run(t, 2, client=httpx.Client())["model"] for t in ["a1", "a2", "a3", "a4"]]
+    assert models == ["claude-haiku-5-5"] * 2 + ["gemini-3.1-flash-lite"] * 2
+    # cached repeats do not spend budget
+    assert pipeline.run("a1", 2, client=httpx.Client())["model"] == "claude-haiku-5-5"
+    assert llm.claude_budget.used == 2 and llm.next_model() == "gemini-3.1-flash-lite"
+
+
+def test_failed_claude_falls_back_to_gemini(fake_discovery, monkeypatch):
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "a")
+    monkeypatch.setenv("LLM_API_KEY", "g")
+    monkeypatch.setattr(llm, "claude_budget", llm.ClaudeBudget(5))
+
+    def review(client, cfg, topic, genes):
+        if cfg.provider == "anthropic":
+            return {"assessments": {}, "issues": [], "calls": 1, "failed_calls": 1, "usage": {}}
+        return _fake_review(client, cfg, topic, genes)
+
+    monkeypatch.setattr(llm, "review", review)
+    result = pipeline.run("b1", 2, client=httpx.Client())
+    assert result["model"] == llm.LLMConfig("openai").model
+    assert any("failed for every batch" in w for w in result["warnings"])
+
+
+def test_budget_counter_persists_and_fails_closed(tmp_path):
+    path = tmp_path / "used.txt"
+    first = llm.ClaudeBudget(2, str(path))
+    assert first.try_acquire() and first.try_acquire() and not first.try_acquire()
+    assert llm.ClaudeBudget(2, str(path)).remaining == 0
+    path.write_text("garbage")
+    assert llm.ClaudeBudget(2, str(path)).remaining == 0

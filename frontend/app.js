@@ -29,7 +29,7 @@ async function checkServer() {
   try {
     const res = await fetch(API + "/api/health", { signal: AbortSignal.timeout(90000) });
     const body = await res.json();
-    set("ok", body.llm_enabled ? "Live · LLM on" : "Live · literature only");
+    set("ok", body.llm_enabled ? `Live · ${body.model}` : "Live · literature only");
     return true;
   } catch {
     set("down", "Server offline · examples only");

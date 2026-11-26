@@ -2,7 +2,7 @@
 
 **Enter a biomedical topic and a number _k_. Get the top-_k_ human genes, ranked from PubMed literature with LLM evidence review and a citation for every claim.**
 
-🔗 **Live demo:** https://REPLACE-WITH-YOUR-USERNAME.github.io/gene-prioritization/ &nbsp;·&nbsp; **API:** https://REPLACE-WITH-YOUR-BACKEND.onrender.com/docs
+🔗 **Live demo:** https://ramya2003-cyber.github.io/gene-prioritization/ &nbsp;·&nbsp; **API:** https://REPLACE-WITH-YOUR-BACKEND.onrender.com/docs
 
 ![Screenshot](docs/screenshot.png)
 
@@ -66,6 +66,8 @@ The weights are set by hand. I tested them against **learned weights from a pair
 ### Provider-agnostic, free LLM
 The backend calls any **OpenAI-compatible** chat endpoint. The default is the **Google Gemini free tier**. Groq, Mistral or OpenRouter can be used by changing three environment variables (see [`.env.example`](.env.example)).
 
+**Claude for the first searches:** if `ANTHROPIC_API_KEY` is set, the first `CLAUDE_SEARCH_LIMIT` (default 5) uncached searches are reviewed by Claude (`CLAUDE_MODEL`, default `claude-haiku-5-5`, under $0.01 per search); every later search uses Gemini. If a Claude review fails, that search falls back to Gemini. Cached repeats don't count. The counter is kept in memory, so a server restart resets it; set a spend limit in the Anthropic console as the hard cap.
+
 ## Architecture
 
 ```
@@ -108,7 +110,7 @@ Regenerate the instant examples with `python scripts/precompute_examples.py "fer
 
 ## Deploy (free)
 
-1. **Backend on Render:** Dashboard → *New* → *Blueprint* → select this repo (it uses `render.yaml`). Set `LLM_API_KEY` when prompted. A `Dockerfile` is also included for Hugging Face Spaces or other Docker hosts.
+1. **Backend on Render:** Dashboard → *New* → *Blueprint* → select this repo (it uses `render.yaml`). Set `LLM_API_KEY` (Gemini) and, optionally, `ANTHROPIC_API_KEY` when prompted. A `Dockerfile` is also included for Hugging Face Spaces or other Docker hosts.
 2. **Frontend on GitHub Pages:**
    - Put the backend URL into `frontend/config.js`.
    - Under repo *Settings → Pages → Source*, choose **GitHub Actions**.
