@@ -132,4 +132,4 @@ training/   weight-validation study (learning-to-rank vs hand-set weights)
 This app grew out of my research on literature-based gene prioritization. That work compared GF-IDF, learning-to-rank and evolution-strategy rankers on KEGG pathway-recovery benchmarks. The earlier rankers over-rewarded network hub genes on live topics: for example, TP53 ranked #1 for *ferroptosis*, ahead of GPX4. This version adds the LLM evidence layer and caps the network term to fix that.
 
 ## License
-MIT
+All rights reserved. This code is shared for review as part of my M.Tech project; please contact me before reusing it.
