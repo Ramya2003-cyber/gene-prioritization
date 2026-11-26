@@ -39,10 +39,8 @@ def run(topic: str, k: int, progress=lambda stage, message: None, *, client: htt
     topic = literature.clean_topic(topic)
     if not isinstance(k, int) or not 1 <= k <= MAX_K:
         raise ValueError(f"k must be an integer from 1 to {MAX_K}.")
-    # Tests pass an explicit config; the server picks Claude (while its search budget lasts) then Gemini.
-    claude, gemini = llm.configs() if config is None else (None, config)
-    llm_available = bool((claude and claude.enabled) or gemini.enabled)
-    key = (topic.casefold(), k, "llm" if llm_available else "literature-only")
+    config = config or llm.LLMConfig()
+    key = (topic.casefold(), k, config.model if config.enabled else "literature-only")
     cached = _cache_get(key)
     if cached:
         progress("done", "Loaded a result computed in the last 24 hours.")
@@ -74,24 +72,13 @@ def run(topic: str, k: int, progress=lambda stage, message: None, *, client: htt
             warnings.append(f"STRING network unavailable ({type(exc).__name__}); network bonus set to 0.")
 
         review = {"assessments": {}, "issues": [], "calls": 0, "failed_calls": 0, "usage": {}}
-        candidates = []
-        if claude is not None and claude.enabled and llm.claude_budget.try_acquire():
-            candidates.append(claude)
-        if gemini.enabled:
-            candidates.append(gemini)
-        used = None
-        for cfg in candidates:
-            to_review = pool[: llm.GENES_PER_CALL * cfg.max_calls]
-            progress("llm", f"LLM ({cfg.model}) is reviewing evidence sentences for {len(to_review)} genes…")
-            review = llm.review(client, cfg, topic, to_review)
-            if review["assessments"]:
-                used = cfg
-                break
-            warnings.append(f"The LLM review with {cfg.model} failed for every batch.")
-        if used:
+        if config.enabled:
+            to_review = pool[: llm.GENES_PER_CALL * config.max_calls]
+            progress("llm", f"LLM ({config.model}) is reviewing evidence sentences for {len(to_review)} genes…")
+            review = llm.review(client, config, topic, to_review)
+            if review["calls"] and review["failed_calls"] == review["calls"]:
+                warnings.append("The LLM review failed for every batch; ranking uses literature and network signals only.")
             warnings.extend(review["issues"][:8])
-        elif candidates:
-            warnings.append("Ranking uses literature and network signals only.")
         else:
             warnings.append("No LLM API key is configured on the server; ranking uses literature and network signals only.")
 
@@ -106,7 +93,7 @@ def run(topic: str, k: int, progress=lambda stage, message: None, *, client: htt
             "k": k,
             "created_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
             "mode": "llm" if review["assessments"] else "literature-only",
-            "model": used.model if used else None,
+            "model": config.model if review["assessments"] else None,
             "stats": {
                 "abstracts_matched": found["total_hits"],
                 "abstracts_used": len(found["pmids"]),

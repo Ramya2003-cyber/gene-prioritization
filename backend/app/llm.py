@@ -15,7 +15,6 @@ import json
 import os
 import re
 from concurrent.futures import ThreadPoolExecutor
-from threading import Lock
 
 import httpx
 
@@ -44,110 +43,16 @@ specific role in this topic. Return JSON only:
 {"genes":[{"symbol":"...","relevance":"...","rationale":"...","evidence":[{"pid":"P1","label":"..."}]}]}"""
 
 
-RESPONSE_SCHEMA = {
-    "type": "object",
-    "properties": {
-        "genes": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "symbol": {"type": "string"},
-                    "relevance": {"type": "string", "enum": list(RELEVANCE)},
-                    "rationale": {"type": "string"},
-                    "evidence": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "pid": {"type": "string"},
-                                "label": {"type": "string", "enum": list(EVIDENCE)},
-                            },
-                            "required": ["pid", "label"],
-                            "additionalProperties": False,
-                        },
-                    },
-                },
-                "required": ["symbol", "relevance", "rationale", "evidence"],
-                "additionalProperties": False,
-            },
-        }
-    },
-    "required": ["genes"],
-    "additionalProperties": False,
-}
-
-
 class LLMConfig:
-    """provider "openai": any OpenAI-compatible endpoint (default: free Gemini tier).
-    provider "anthropic": Claude through the official SDK (ANTHROPIC_API_KEY, CLAUDE_MODEL)."""
-
-    def __init__(self, provider: str = "openai") -> None:
-        self.provider = provider
-        if provider == "anthropic":
-            self.api_key = os.getenv("ANTHROPIC_API_KEY") or ""
-            self.model = os.getenv("CLAUDE_MODEL", "claude-haiku-5-5")
-            self.base_url = ""
-        else:
-            self.api_key = os.getenv("LLM_API_KEY") or os.getenv("GEMINI_API_KEY") or ""
-            self.base_url = os.getenv("LLM_BASE_URL", "https://generativelanguage.googleapis.com/v1beta/openai").rstrip("/")
-            self.model = os.getenv("LLM_MODEL", "gemini-3.1-flash-lite")
-        self.effort = os.getenv("CLAUDE_EFFORT", "low")  # Claude only; labelling is a light task
+    def __init__(self) -> None:
+        self.api_key = os.getenv("LLM_API_KEY") or os.getenv("GEMINI_API_KEY") or ""
+        self.base_url = os.getenv("LLM_BASE_URL", "https://generativelanguage.googleapis.com/v1beta/openai").rstrip("/")
+        self.model = os.getenv("LLM_MODEL", "gemini-3.1-flash-lite")
         self.max_calls = int(os.getenv("LLM_MAX_CALLS_PER_SEARCH", "4"))
 
     @property
     def enabled(self) -> bool:
         return bool(self.api_key)
-
-
-class ClaudeBudget:
-    """Server-wide cap on how many searches may use (paid) Claude; later searches use Gemini.
-
-    The count lives in memory and, if CLAUDE_USAGE_FILE is set, in that file. Without a
-    persistent disk a server restart resets it, so also set a spend limit in the Anthropic console.
-    """
-
-    def __init__(self, limit: int, path: str | None = None) -> None:
-        self.limit, self.path, self._lock = limit, path, Lock()
-        self.used = 0
-        if path and os.path.exists(path):
-            try:
-                self.used = int(open(path, encoding="utf-8").read().strip() or 0)
-            except (OSError, ValueError):
-                self.used = limit  # unreadable counter: fail closed, never overspend
-        self.used = min(self.used, limit)
-
-    @property
-    def remaining(self) -> int:
-        return max(self.limit - self.used, 0)
-
-    def try_acquire(self) -> bool:
-        with self._lock:
-            if self.used >= self.limit:
-                return False
-            self.used += 1
-            if self.path:
-                try:
-                    with open(self.path, "w", encoding="utf-8") as fh:
-                        fh.write(str(self.used))
-                except OSError:
-                    pass
-            return True
-
-
-claude_budget = ClaudeBudget(int(os.getenv("CLAUDE_SEARCH_LIMIT", "5")), os.getenv("CLAUDE_USAGE_FILE") or None)
-
-
-def configs() -> tuple[LLMConfig, LLMConfig]:
-    return LLMConfig("anthropic"), LLMConfig("openai")
-
-
-def next_model() -> str | None:
-    """Which model the next uncached search would use (for the health endpoint)."""
-    claude, gemini = configs()
-    if claude.enabled and claude_budget.remaining:
-        return claude.model
-    return gemini.model if gemini.enabled else None
 
 
 def build_batches(genes: list[dict], size: int = GENES_PER_CALL) -> list[list[dict]]:
@@ -228,30 +133,10 @@ def validate(batch: list[dict], payload: dict) -> tuple[dict[str, dict], list[st
     return accepted, issues
 
 
-def _call_anthropic(config: LLMConfig, user: str) -> dict:
-    import anthropic  # imported lazily so the Gemini path needs no extra package
-
-    claude = anthropic.Anthropic(api_key=config.api_key, max_retries=2, timeout=90)
-    message = claude.messages.create(
-        model=config.model,
-        max_tokens=16000,
-        system=SYSTEM_PROMPT,
-        output_config={"effort": config.effort, "format": {"type": "json_schema", "schema": RESPONSE_SCHEMA}},
-        messages=[{"role": "user", "content": user}],
-    )
-    if message.stop_reason == "refusal":
-        raise RuntimeError("model declined the request")
-    text = next(b.text for b in message.content if b.type == "text")
-    usage = {"prompt_tokens": message.usage.input_tokens, "completion_tokens": message.usage.output_tokens}
-    return {"payload": parse_json(text), "usage": usage}
-
-
 def _call(client: httpx.Client, config: LLMConfig, topic: str, batch: list[dict]) -> dict:
     user = json.dumps(
         {"topic": topic, "genes": [{k: v for k, v in g.items()} for g in batch]}, ensure_ascii=False
     )
-    if config.provider == "anthropic":
-        return _call_anthropic(config, user)
     response = request(
         client,
         "POST",

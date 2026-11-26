@@ -17,11 +17,5 @@ services:
         value: https://generativelanguage.googleapis.com/v1beta/openai
       - key: LLM_MODEL
         value: gemini-3.1-flash-lite
-      - key: ANTHROPIC_API_KEY
-        sync: false
-      - key: CLAUDE_MODEL
-        value: claude-haiku-5-5
-      - key: CLAUDE_SEARCH_LIMIT
-        value: "5"
       - key: ALLOWED_ORIGINS
         value: "*"
